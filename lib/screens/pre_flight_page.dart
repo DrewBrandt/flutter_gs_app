@@ -9,8 +9,8 @@ class PreFlightPage extends StatefulWidget {
 
 class _PreFlightPageState extends State<PreFlightPage> {
   String _connection = 'Not connected';
-  double _battery = 0.89;
-  int _rssi = -64;
+  final double _battery = 0.89;
+  final int _rssi = -64;
 
   final _apogeeAltController = TextEditingController(text: '1200');
   final _mainAltController = TextEditingController(text: '300');
