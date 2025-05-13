@@ -1,4 +1,4 @@
-name: Deploy Flutter Web
+name: Deploy to Personal GitHub Pages
 
 on:
   push:
@@ -16,10 +16,14 @@ jobs:
         with:
           flutter-version: '3.29.3'
 
-      - run: flutter build web
+      - run: flutter build web --release
 
-      - name: Deploy to GitHub Pages
+      - name: Deploy to personal GitHub Pages repo
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          personal_token: ${{ secrets.GH_PAGES_DEPLOY_TOKEN }}
+          external_repository: DrewBrandt/DrewBrandt.github.io
+          publish_branch: main
           publish_dir: build/web
+          user_name: DrewBrandt
+          user_email: DrewBrandt@users.noreply.github.com
