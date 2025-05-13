@@ -1,0 +1,108 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_gs_app/notifiers/flight_computer_notifier.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+class HeaderBar extends ConsumerWidget {
+  final VoidCallback onToggleTheme;
+
+  const HeaderBar({super.key, required this.onToggleTheme});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final flightData = ref.watch(flightComputerProvider);
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
+    return Container(
+      height: 64,
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      color: Theme.of(context).colorScheme.primary,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          const Expanded(
+            child: Center(
+              child: Text(
+                'Flight: Test Flight 001',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
+          Row(
+            children: [
+              IconButton(
+                icon: Icon(
+                  isDark ? Icons.wb_sunny_outlined : Icons.nightlight_round,
+                  color: Colors.white,
+                ),
+                tooltip: 'Toggle Theme',
+                onPressed: onToggleTheme,
+              ),
+              const SizedBox(width: 20),
+              _HeaderStat(
+                icon: Icons.signal_cellular_alt,
+                label: 'RSSI: ${flightData.RSSI.toStringAsFixed(0)} dBm',
+              ),
+              const SizedBox(width: 20),
+              _HeaderStat(
+                icon: Icons.battery_full,
+                label:
+                    'Battery: ${(flightData.batteryLevel * 100).toStringAsFixed(0)}%',
+              ),
+              const SizedBox(width: 20),
+              _HeaderStat(
+                icon: Icons.flight_takeoff,
+                label: 'Stage: ${_stageName(flightData.stage)}',
+              ),
+              const SizedBox(width: 20),
+              _HeaderStat(
+                icon: Icons.trending_up,
+                label: 'Alt: ${flightData.position.y.toStringAsFixed(0)} m',
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+String _stageName(int stage) {
+  switch (stage) {
+    case 0:
+      return 'Pad';
+    case 1:
+      return 'Boost';
+    case 2:
+      return 'Coast';
+    case 3:
+      return 'Drogue';
+    case 4:
+      return 'Main';
+    case 5:
+      return 'Landed';
+    default:
+      return 'Unknown';
+  }
+}
+
+class _HeaderStat extends StatelessWidget {
+  final IconData icon;
+  final String label;
+
+  const _HeaderStat({required this.icon, required this.label});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Icon(icon, size: 20, color: Colors.white),
+        const SizedBox(width: 4),
+        Text(label, style: const TextStyle(fontSize: 14, color: Colors.white)),
+      ],
+    );
+  }
+}
