@@ -22,6 +22,8 @@ class FlightComputerNotifier extends Notifier<FlightComputerModel> {
       name: 'Unknown',
       temperature: 0,
       hasGPSLock: false,
+      flightName: 'Test Flight 001',
+      
     );
   }
 
