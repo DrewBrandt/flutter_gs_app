@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,534 +10,483 @@ part of 'file_model.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
 /// @nodoc
 mixin _$FileModel {
-  String get name => throw _privateConstructorUsedError;
-  int get size => throw _privateConstructorUsedError;
-  DateTime get date => throw _privateConstructorUsedError;
 
-  /// Create a copy of FileModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $FileModelCopyWith<FileModel> get copyWith =>
-      throw _privateConstructorUsedError;
+ String get name; int get size; DateTime get date;
+/// Create a copy of FileModel
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$FileModelCopyWith<FileModel> get copyWith => _$FileModelCopyWithImpl<FileModel>(this as FileModel, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is FileModel&&(identical(other.name, name) || other.name == name)&&(identical(other.size, size) || other.size == size)&&(identical(other.date, date) || other.date == date));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,name,size,date);
+
+@override
+String toString() {
+  return 'FileModel(name: $name, size: $size, date: $date)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $FileModelCopyWith<$Res> {
-  factory $FileModelCopyWith(FileModel value, $Res Function(FileModel) then) =
-      _$FileModelCopyWithImpl<$Res, FileModel>;
-  @useResult
-  $Res call({String name, int size, DateTime date});
-}
+abstract mixin class $FileModelCopyWith<$Res>  {
+  factory $FileModelCopyWith(FileModel value, $Res Function(FileModel) _then) = _$FileModelCopyWithImpl;
+@useResult
+$Res call({
+ String name, int size, DateTime date
+});
 
+
+
+
+}
 /// @nodoc
-class _$FileModelCopyWithImpl<$Res, $Val extends FileModel>
+class _$FileModelCopyWithImpl<$Res>
     implements $FileModelCopyWith<$Res> {
-  _$FileModelCopyWithImpl(this._value, this._then);
+  _$FileModelCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final FileModel _self;
+  final $Res Function(FileModel) _then;
 
-  /// Create a copy of FileModel
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? name = null,
-    Object? size = null,
-    Object? date = null,
-  }) {
-    return _then(_value.copyWith(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      size: null == size
-          ? _value.size
-          : size // ignore: cast_nullable_to_non_nullable
-              as int,
-      date: null == date
-          ? _value.date
-          : date // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-    ) as $Val);
-  }
+/// Create a copy of FileModel
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? size = null,Object? date = null,}) {
+  return _then(_self.copyWith(
+name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String,size: null == size ? _self.size : size // ignore: cast_nullable_to_non_nullable
+as int,date: null == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
+as DateTime,
+  ));
 }
 
-/// @nodoc
-abstract class _$$FileModelImplCopyWith<$Res>
-    implements $FileModelCopyWith<$Res> {
-  factory _$$FileModelImplCopyWith(
-          _$FileModelImpl value, $Res Function(_$FileModelImpl) then) =
-      __$$FileModelImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String name, int size, DateTime date});
 }
 
-/// @nodoc
-class __$$FileModelImplCopyWithImpl<$Res>
-    extends _$FileModelCopyWithImpl<$Res, _$FileModelImpl>
-    implements _$$FileModelImplCopyWith<$Res> {
-  __$$FileModelImplCopyWithImpl(
-      _$FileModelImpl _value, $Res Function(_$FileModelImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of FileModel
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? name = null,
-    Object? size = null,
-    Object? date = null,
-  }) {
-    return _then(_$FileModelImpl(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      size: null == size
-          ? _value.size
-          : size // ignore: cast_nullable_to_non_nullable
-              as int,
-      date: null == date
-          ? _value.date
-          : date // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-    ));
-  }
-}
 
 /// @nodoc
 
-class _$FileModelImpl implements _FileModel {
-  const _$FileModelImpl(
-      {required this.name, required this.size, required this.date});
 
-  @override
-  final String name;
-  @override
-  final int size;
-  @override
-  final DateTime date;
+class _FileModel implements FileModel {
+  const _FileModel({required this.name, required this.size, required this.date});
+  
 
-  @override
-  String toString() {
-    return 'FileModel(name: $name, size: $size, date: $date)';
-  }
+@override final  String name;
+@override final  int size;
+@override final  DateTime date;
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$FileModelImpl &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.size, size) || other.size == size) &&
-            (identical(other.date, date) || other.date == date));
-  }
+/// Create a copy of FileModel
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$FileModelCopyWith<_FileModel> get copyWith => __$FileModelCopyWithImpl<_FileModel>(this, _$identity);
 
-  @override
-  int get hashCode => Object.hash(runtimeType, name, size, date);
 
-  /// Create a copy of FileModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$FileModelImplCopyWith<_$FileModelImpl> get copyWith =>
-      __$$FileModelImplCopyWithImpl<_$FileModelImpl>(this, _$identity);
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _FileModel&&(identical(other.name, name) || other.name == name)&&(identical(other.size, size) || other.size == size)&&(identical(other.date, date) || other.date == date));
 }
 
-abstract class _FileModel implements FileModel {
-  const factory _FileModel(
-      {required final String name,
-      required final int size,
-      required final DateTime date}) = _$FileModelImpl;
 
-  @override
-  String get name;
-  @override
-  int get size;
-  @override
-  DateTime get date;
+@override
+int get hashCode => Object.hash(runtimeType,name,size,date);
 
-  /// Create a copy of FileModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$FileModelImplCopyWith<_$FileModelImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+String toString() {
+  return 'FileModel(name: $name, size: $size, date: $date)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$FileModelCopyWith<$Res> implements $FileModelCopyWith<$Res> {
+  factory _$FileModelCopyWith(_FileModel value, $Res Function(_FileModel) _then) = __$FileModelCopyWithImpl;
+@override @useResult
+$Res call({
+ String name, int size, DateTime date
+});
+
+
+
+
+}
+/// @nodoc
+class __$FileModelCopyWithImpl<$Res>
+    implements _$FileModelCopyWith<$Res> {
+  __$FileModelCopyWithImpl(this._self, this._then);
+
+  final _FileModel _self;
+  final $Res Function(_FileModel) _then;
+
+/// Create a copy of FileModel
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? size = null,Object? date = null,}) {
+  return _then(_FileModel(
+name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String,size: null == size ? _self.size : size // ignore: cast_nullable_to_non_nullable
+as int,date: null == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
+as DateTime,
+  ));
+}
+
+
 }
 
 /// @nodoc
 mixin _$LocalFileModel {
-  FileModel get fileInfo => throw _privateConstructorUsedError;
-  RemoteFileModel? get remoteVersion => throw _privateConstructorUsedError;
 
-  /// Create a copy of LocalFileModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $LocalFileModelCopyWith<LocalFileModel> get copyWith =>
-      throw _privateConstructorUsedError;
+ FileModel get fileInfo; RemoteFileModel? get remoteVersion;
+/// Create a copy of LocalFileModel
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$LocalFileModelCopyWith<LocalFileModel> get copyWith => _$LocalFileModelCopyWithImpl<LocalFileModel>(this as LocalFileModel, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LocalFileModel&&(identical(other.fileInfo, fileInfo) || other.fileInfo == fileInfo)&&(identical(other.remoteVersion, remoteVersion) || other.remoteVersion == remoteVersion));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,fileInfo,remoteVersion);
+
+@override
+String toString() {
+  return 'LocalFileModel(fileInfo: $fileInfo, remoteVersion: $remoteVersion)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $LocalFileModelCopyWith<$Res> {
-  factory $LocalFileModelCopyWith(
-          LocalFileModel value, $Res Function(LocalFileModel) then) =
-      _$LocalFileModelCopyWithImpl<$Res, LocalFileModel>;
-  @useResult
-  $Res call({FileModel fileInfo, RemoteFileModel? remoteVersion});
+abstract mixin class $LocalFileModelCopyWith<$Res>  {
+  factory $LocalFileModelCopyWith(LocalFileModel value, $Res Function(LocalFileModel) _then) = _$LocalFileModelCopyWithImpl;
+@useResult
+$Res call({
+ FileModel fileInfo, RemoteFileModel? remoteVersion
+});
 
-  $FileModelCopyWith<$Res> get fileInfo;
-  $RemoteFileModelCopyWith<$Res>? get remoteVersion;
+
+$FileModelCopyWith<$Res> get fileInfo;$RemoteFileModelCopyWith<$Res>? get remoteVersion;
+
 }
-
 /// @nodoc
-class _$LocalFileModelCopyWithImpl<$Res, $Val extends LocalFileModel>
+class _$LocalFileModelCopyWithImpl<$Res>
     implements $LocalFileModelCopyWith<$Res> {
-  _$LocalFileModelCopyWithImpl(this._value, this._then);
+  _$LocalFileModelCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final LocalFileModel _self;
+  final $Res Function(LocalFileModel) _then;
 
-  /// Create a copy of LocalFileModel
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? fileInfo = null,
-    Object? remoteVersion = freezed,
-  }) {
-    return _then(_value.copyWith(
-      fileInfo: null == fileInfo
-          ? _value.fileInfo
-          : fileInfo // ignore: cast_nullable_to_non_nullable
-              as FileModel,
-      remoteVersion: freezed == remoteVersion
-          ? _value.remoteVersion
-          : remoteVersion // ignore: cast_nullable_to_non_nullable
-              as RemoteFileModel?,
-    ) as $Val);
+/// Create a copy of LocalFileModel
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? fileInfo = null,Object? remoteVersion = freezed,}) {
+  return _then(_self.copyWith(
+fileInfo: null == fileInfo ? _self.fileInfo : fileInfo // ignore: cast_nullable_to_non_nullable
+as FileModel,remoteVersion: freezed == remoteVersion ? _self.remoteVersion : remoteVersion // ignore: cast_nullable_to_non_nullable
+as RemoteFileModel?,
+  ));
+}
+/// Create a copy of LocalFileModel
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$FileModelCopyWith<$Res> get fileInfo {
+  
+  return $FileModelCopyWith<$Res>(_self.fileInfo, (value) {
+    return _then(_self.copyWith(fileInfo: value));
+  });
+}/// Create a copy of LocalFileModel
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$RemoteFileModelCopyWith<$Res>? get remoteVersion {
+    if (_self.remoteVersion == null) {
+    return null;
   }
 
-  /// Create a copy of LocalFileModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $FileModelCopyWith<$Res> get fileInfo {
-    return $FileModelCopyWith<$Res>(_value.fileInfo, (value) {
-      return _then(_value.copyWith(fileInfo: value) as $Val);
-    });
-  }
-
-  /// Create a copy of LocalFileModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $RemoteFileModelCopyWith<$Res>? get remoteVersion {
-    if (_value.remoteVersion == null) {
-      return null;
-    }
-
-    return $RemoteFileModelCopyWith<$Res>(_value.remoteVersion!, (value) {
-      return _then(_value.copyWith(remoteVersion: value) as $Val);
-    });
-  }
+  return $RemoteFileModelCopyWith<$Res>(_self.remoteVersion!, (value) {
+    return _then(_self.copyWith(remoteVersion: value));
+  });
+}
 }
 
-/// @nodoc
-abstract class _$$LocalFileModelImplCopyWith<$Res>
-    implements $LocalFileModelCopyWith<$Res> {
-  factory _$$LocalFileModelImplCopyWith(_$LocalFileModelImpl value,
-          $Res Function(_$LocalFileModelImpl) then) =
-      __$$LocalFileModelImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({FileModel fileInfo, RemoteFileModel? remoteVersion});
-
-  @override
-  $FileModelCopyWith<$Res> get fileInfo;
-  @override
-  $RemoteFileModelCopyWith<$Res>? get remoteVersion;
-}
-
-/// @nodoc
-class __$$LocalFileModelImplCopyWithImpl<$Res>
-    extends _$LocalFileModelCopyWithImpl<$Res, _$LocalFileModelImpl>
-    implements _$$LocalFileModelImplCopyWith<$Res> {
-  __$$LocalFileModelImplCopyWithImpl(
-      _$LocalFileModelImpl _value, $Res Function(_$LocalFileModelImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of LocalFileModel
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? fileInfo = null,
-    Object? remoteVersion = freezed,
-  }) {
-    return _then(_$LocalFileModelImpl(
-      fileInfo: null == fileInfo
-          ? _value.fileInfo
-          : fileInfo // ignore: cast_nullable_to_non_nullable
-              as FileModel,
-      remoteVersion: freezed == remoteVersion
-          ? _value.remoteVersion
-          : remoteVersion // ignore: cast_nullable_to_non_nullable
-              as RemoteFileModel?,
-    ));
-  }
-}
 
 /// @nodoc
 
-class _$LocalFileModelImpl implements _LocalFileModel {
-  const _$LocalFileModelImpl(
-      {required this.fileInfo, required this.remoteVersion});
 
-  @override
-  final FileModel fileInfo;
-  @override
-  final RemoteFileModel? remoteVersion;
+class _LocalFileModel implements LocalFileModel {
+  const _LocalFileModel({required this.fileInfo, required this.remoteVersion});
+  
 
-  @override
-  String toString() {
-    return 'LocalFileModel(fileInfo: $fileInfo, remoteVersion: $remoteVersion)';
-  }
+@override final  FileModel fileInfo;
+@override final  RemoteFileModel? remoteVersion;
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$LocalFileModelImpl &&
-            (identical(other.fileInfo, fileInfo) ||
-                other.fileInfo == fileInfo) &&
-            (identical(other.remoteVersion, remoteVersion) ||
-                other.remoteVersion == remoteVersion));
-  }
+/// Create a copy of LocalFileModel
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$LocalFileModelCopyWith<_LocalFileModel> get copyWith => __$LocalFileModelCopyWithImpl<_LocalFileModel>(this, _$identity);
 
-  @override
-  int get hashCode => Object.hash(runtimeType, fileInfo, remoteVersion);
 
-  /// Create a copy of LocalFileModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$LocalFileModelImplCopyWith<_$LocalFileModelImpl> get copyWith =>
-      __$$LocalFileModelImplCopyWithImpl<_$LocalFileModelImpl>(
-          this, _$identity);
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LocalFileModel&&(identical(other.fileInfo, fileInfo) || other.fileInfo == fileInfo)&&(identical(other.remoteVersion, remoteVersion) || other.remoteVersion == remoteVersion));
 }
 
-abstract class _LocalFileModel implements LocalFileModel {
-  const factory _LocalFileModel(
-      {required final FileModel fileInfo,
-      required final RemoteFileModel? remoteVersion}) = _$LocalFileModelImpl;
 
-  @override
-  FileModel get fileInfo;
-  @override
-  RemoteFileModel? get remoteVersion;
+@override
+int get hashCode => Object.hash(runtimeType,fileInfo,remoteVersion);
 
-  /// Create a copy of LocalFileModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$LocalFileModelImplCopyWith<_$LocalFileModelImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+String toString() {
+  return 'LocalFileModel(fileInfo: $fileInfo, remoteVersion: $remoteVersion)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$LocalFileModelCopyWith<$Res> implements $LocalFileModelCopyWith<$Res> {
+  factory _$LocalFileModelCopyWith(_LocalFileModel value, $Res Function(_LocalFileModel) _then) = __$LocalFileModelCopyWithImpl;
+@override @useResult
+$Res call({
+ FileModel fileInfo, RemoteFileModel? remoteVersion
+});
+
+
+@override $FileModelCopyWith<$Res> get fileInfo;@override $RemoteFileModelCopyWith<$Res>? get remoteVersion;
+
+}
+/// @nodoc
+class __$LocalFileModelCopyWithImpl<$Res>
+    implements _$LocalFileModelCopyWith<$Res> {
+  __$LocalFileModelCopyWithImpl(this._self, this._then);
+
+  final _LocalFileModel _self;
+  final $Res Function(_LocalFileModel) _then;
+
+/// Create a copy of LocalFileModel
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? fileInfo = null,Object? remoteVersion = freezed,}) {
+  return _then(_LocalFileModel(
+fileInfo: null == fileInfo ? _self.fileInfo : fileInfo // ignore: cast_nullable_to_non_nullable
+as FileModel,remoteVersion: freezed == remoteVersion ? _self.remoteVersion : remoteVersion // ignore: cast_nullable_to_non_nullable
+as RemoteFileModel?,
+  ));
+}
+
+/// Create a copy of LocalFileModel
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$FileModelCopyWith<$Res> get fileInfo {
+  
+  return $FileModelCopyWith<$Res>(_self.fileInfo, (value) {
+    return _then(_self.copyWith(fileInfo: value));
+  });
+}/// Create a copy of LocalFileModel
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$RemoteFileModelCopyWith<$Res>? get remoteVersion {
+    if (_self.remoteVersion == null) {
+    return null;
+  }
+
+  return $RemoteFileModelCopyWith<$Res>(_self.remoteVersion!, (value) {
+    return _then(_self.copyWith(remoteVersion: value));
+  });
+}
 }
 
 /// @nodoc
 mixin _$RemoteFileModel {
-  FileModel get fileInfo => throw _privateConstructorUsedError;
-  LocalFileModel? get localVersion => throw _privateConstructorUsedError;
 
-  /// Create a copy of RemoteFileModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $RemoteFileModelCopyWith<RemoteFileModel> get copyWith =>
-      throw _privateConstructorUsedError;
+ FileModel get fileInfo; LocalFileModel? get localVersion;
+/// Create a copy of RemoteFileModel
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$RemoteFileModelCopyWith<RemoteFileModel> get copyWith => _$RemoteFileModelCopyWithImpl<RemoteFileModel>(this as RemoteFileModel, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is RemoteFileModel&&(identical(other.fileInfo, fileInfo) || other.fileInfo == fileInfo)&&(identical(other.localVersion, localVersion) || other.localVersion == localVersion));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,fileInfo,localVersion);
+
+@override
+String toString() {
+  return 'RemoteFileModel(fileInfo: $fileInfo, localVersion: $localVersion)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $RemoteFileModelCopyWith<$Res> {
-  factory $RemoteFileModelCopyWith(
-          RemoteFileModel value, $Res Function(RemoteFileModel) then) =
-      _$RemoteFileModelCopyWithImpl<$Res, RemoteFileModel>;
-  @useResult
-  $Res call({FileModel fileInfo, LocalFileModel? localVersion});
+abstract mixin class $RemoteFileModelCopyWith<$Res>  {
+  factory $RemoteFileModelCopyWith(RemoteFileModel value, $Res Function(RemoteFileModel) _then) = _$RemoteFileModelCopyWithImpl;
+@useResult
+$Res call({
+ FileModel fileInfo, LocalFileModel? localVersion
+});
 
-  $FileModelCopyWith<$Res> get fileInfo;
-  $LocalFileModelCopyWith<$Res>? get localVersion;
+
+$FileModelCopyWith<$Res> get fileInfo;$LocalFileModelCopyWith<$Res>? get localVersion;
+
 }
-
 /// @nodoc
-class _$RemoteFileModelCopyWithImpl<$Res, $Val extends RemoteFileModel>
+class _$RemoteFileModelCopyWithImpl<$Res>
     implements $RemoteFileModelCopyWith<$Res> {
-  _$RemoteFileModelCopyWithImpl(this._value, this._then);
+  _$RemoteFileModelCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final RemoteFileModel _self;
+  final $Res Function(RemoteFileModel) _then;
 
-  /// Create a copy of RemoteFileModel
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? fileInfo = null,
-    Object? localVersion = freezed,
-  }) {
-    return _then(_value.copyWith(
-      fileInfo: null == fileInfo
-          ? _value.fileInfo
-          : fileInfo // ignore: cast_nullable_to_non_nullable
-              as FileModel,
-      localVersion: freezed == localVersion
-          ? _value.localVersion
-          : localVersion // ignore: cast_nullable_to_non_nullable
-              as LocalFileModel?,
-    ) as $Val);
+/// Create a copy of RemoteFileModel
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? fileInfo = null,Object? localVersion = freezed,}) {
+  return _then(_self.copyWith(
+fileInfo: null == fileInfo ? _self.fileInfo : fileInfo // ignore: cast_nullable_to_non_nullable
+as FileModel,localVersion: freezed == localVersion ? _self.localVersion : localVersion // ignore: cast_nullable_to_non_nullable
+as LocalFileModel?,
+  ));
+}
+/// Create a copy of RemoteFileModel
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$FileModelCopyWith<$Res> get fileInfo {
+  
+  return $FileModelCopyWith<$Res>(_self.fileInfo, (value) {
+    return _then(_self.copyWith(fileInfo: value));
+  });
+}/// Create a copy of RemoteFileModel
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$LocalFileModelCopyWith<$Res>? get localVersion {
+    if (_self.localVersion == null) {
+    return null;
   }
 
-  /// Create a copy of RemoteFileModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $FileModelCopyWith<$Res> get fileInfo {
-    return $FileModelCopyWith<$Res>(_value.fileInfo, (value) {
-      return _then(_value.copyWith(fileInfo: value) as $Val);
-    });
-  }
-
-  /// Create a copy of RemoteFileModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $LocalFileModelCopyWith<$Res>? get localVersion {
-    if (_value.localVersion == null) {
-      return null;
-    }
-
-    return $LocalFileModelCopyWith<$Res>(_value.localVersion!, (value) {
-      return _then(_value.copyWith(localVersion: value) as $Val);
-    });
-  }
+  return $LocalFileModelCopyWith<$Res>(_self.localVersion!, (value) {
+    return _then(_self.copyWith(localVersion: value));
+  });
+}
 }
 
-/// @nodoc
-abstract class _$$RemoteFileModelImplCopyWith<$Res>
-    implements $RemoteFileModelCopyWith<$Res> {
-  factory _$$RemoteFileModelImplCopyWith(_$RemoteFileModelImpl value,
-          $Res Function(_$RemoteFileModelImpl) then) =
-      __$$RemoteFileModelImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({FileModel fileInfo, LocalFileModel? localVersion});
-
-  @override
-  $FileModelCopyWith<$Res> get fileInfo;
-  @override
-  $LocalFileModelCopyWith<$Res>? get localVersion;
-}
-
-/// @nodoc
-class __$$RemoteFileModelImplCopyWithImpl<$Res>
-    extends _$RemoteFileModelCopyWithImpl<$Res, _$RemoteFileModelImpl>
-    implements _$$RemoteFileModelImplCopyWith<$Res> {
-  __$$RemoteFileModelImplCopyWithImpl(
-      _$RemoteFileModelImpl _value, $Res Function(_$RemoteFileModelImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of RemoteFileModel
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? fileInfo = null,
-    Object? localVersion = freezed,
-  }) {
-    return _then(_$RemoteFileModelImpl(
-      fileInfo: null == fileInfo
-          ? _value.fileInfo
-          : fileInfo // ignore: cast_nullable_to_non_nullable
-              as FileModel,
-      localVersion: freezed == localVersion
-          ? _value.localVersion
-          : localVersion // ignore: cast_nullable_to_non_nullable
-              as LocalFileModel?,
-    ));
-  }
-}
 
 /// @nodoc
 
-class _$RemoteFileModelImpl implements _RemoteFileModel {
-  const _$RemoteFileModelImpl(
-      {required this.fileInfo, required this.localVersion});
 
-  @override
-  final FileModel fileInfo;
-  @override
-  final LocalFileModel? localVersion;
+class _RemoteFileModel implements RemoteFileModel {
+  const _RemoteFileModel({required this.fileInfo, required this.localVersion});
+  
 
-  @override
-  String toString() {
-    return 'RemoteFileModel(fileInfo: $fileInfo, localVersion: $localVersion)';
-  }
+@override final  FileModel fileInfo;
+@override final  LocalFileModel? localVersion;
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$RemoteFileModelImpl &&
-            (identical(other.fileInfo, fileInfo) ||
-                other.fileInfo == fileInfo) &&
-            (identical(other.localVersion, localVersion) ||
-                other.localVersion == localVersion));
-  }
+/// Create a copy of RemoteFileModel
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$RemoteFileModelCopyWith<_RemoteFileModel> get copyWith => __$RemoteFileModelCopyWithImpl<_RemoteFileModel>(this, _$identity);
 
-  @override
-  int get hashCode => Object.hash(runtimeType, fileInfo, localVersion);
 
-  /// Create a copy of RemoteFileModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$RemoteFileModelImplCopyWith<_$RemoteFileModelImpl> get copyWith =>
-      __$$RemoteFileModelImplCopyWithImpl<_$RemoteFileModelImpl>(
-          this, _$identity);
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _RemoteFileModel&&(identical(other.fileInfo, fileInfo) || other.fileInfo == fileInfo)&&(identical(other.localVersion, localVersion) || other.localVersion == localVersion));
 }
 
-abstract class _RemoteFileModel implements RemoteFileModel {
-  const factory _RemoteFileModel(
-      {required final FileModel fileInfo,
-      required final LocalFileModel? localVersion}) = _$RemoteFileModelImpl;
 
-  @override
-  FileModel get fileInfo;
-  @override
-  LocalFileModel? get localVersion;
+@override
+int get hashCode => Object.hash(runtimeType,fileInfo,localVersion);
 
-  /// Create a copy of RemoteFileModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$RemoteFileModelImplCopyWith<_$RemoteFileModelImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+String toString() {
+  return 'RemoteFileModel(fileInfo: $fileInfo, localVersion: $localVersion)';
 }
+
+
+}
+
+/// @nodoc
+abstract mixin class _$RemoteFileModelCopyWith<$Res> implements $RemoteFileModelCopyWith<$Res> {
+  factory _$RemoteFileModelCopyWith(_RemoteFileModel value, $Res Function(_RemoteFileModel) _then) = __$RemoteFileModelCopyWithImpl;
+@override @useResult
+$Res call({
+ FileModel fileInfo, LocalFileModel? localVersion
+});
+
+
+@override $FileModelCopyWith<$Res> get fileInfo;@override $LocalFileModelCopyWith<$Res>? get localVersion;
+
+}
+/// @nodoc
+class __$RemoteFileModelCopyWithImpl<$Res>
+    implements _$RemoteFileModelCopyWith<$Res> {
+  __$RemoteFileModelCopyWithImpl(this._self, this._then);
+
+  final _RemoteFileModel _self;
+  final $Res Function(_RemoteFileModel) _then;
+
+/// Create a copy of RemoteFileModel
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? fileInfo = null,Object? localVersion = freezed,}) {
+  return _then(_RemoteFileModel(
+fileInfo: null == fileInfo ? _self.fileInfo : fileInfo // ignore: cast_nullable_to_non_nullable
+as FileModel,localVersion: freezed == localVersion ? _self.localVersion : localVersion // ignore: cast_nullable_to_non_nullable
+as LocalFileModel?,
+  ));
+}
+
+/// Create a copy of RemoteFileModel
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$FileModelCopyWith<$Res> get fileInfo {
+  
+  return $FileModelCopyWith<$Res>(_self.fileInfo, (value) {
+    return _then(_self.copyWith(fileInfo: value));
+  });
+}/// Create a copy of RemoteFileModel
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$LocalFileModelCopyWith<$Res>? get localVersion {
+    if (_self.localVersion == null) {
+    return null;
+  }
+
+  return $LocalFileModelCopyWith<$Res>(_self.localVersion!, (value) {
+    return _then(_self.copyWith(localVersion: value));
+  });
+}
+}
+
+// dart format on

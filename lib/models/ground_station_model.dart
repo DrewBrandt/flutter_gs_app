@@ -9,7 +9,7 @@ sealed class GroundStationModel with _$GroundStationModel {
     required double RSSI,
     required int id,
     required String name,
-    required FlightComputerModel? connectedFC,
+    required List<FlightComputerModel> connectedFCs,
     required double batteryLevel,
   }) = _GroundStationModel;
 }

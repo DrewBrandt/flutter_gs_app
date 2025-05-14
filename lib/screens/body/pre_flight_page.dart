@@ -7,22 +7,51 @@ class PreFlightPage extends StatefulWidget {
   State<PreFlightPage> createState() => _PreFlightPageState();
 }
 
+class GroundStation {
+  final String name;
+  final List<FlightComputer> connectedFCs;
+  final bool isConnected;
+
+  GroundStation({
+    required this.name,
+    required this.connectedFCs,
+    this.isConnected = false,
+  });
+}
+
+class FlightComputer {
+  final String name;
+  final double batteryLevel;
+  final int rssi;
+  final bool isConnected;
+
+  FlightComputer({
+    required this.name,
+    this.batteryLevel = 1.0,
+    this.rssi = -50,
+    this.isConnected = false,
+  });
+}
+
 class _PreFlightPageState extends State<PreFlightPage> {
-  String _connection = 'Not connected';
-  final double _battery = 0.89;
-  final int _rssi = -64;
+  final List<GroundStation> groundStations = [
+    GroundStation(
+      name: 'BT: GroundStation-X',
+      isConnected: true,
+      connectedFCs: [
+        FlightComputer(name: 'BT: RocketFC-001', batteryLevel: 0.89, rssi: -64),
+        FlightComputer(name: 'USB: /dev/ttyUSB0', batteryLevel: 0.92, rssi: -70),
+      ],
+    ),
+  ];
+
+  GroundStation? _selectedGS;
+  FlightComputer? _selectedFC;
 
   final _apogeeAltController = TextEditingController(text: '1200');
   final _mainAltController = TextEditingController(text: '300');
   final _chutesController = TextEditingController(text: '2');
   bool _useDrogue = true;
-
-  final List<String> _availableConnections = [
-    'USB: /dev/ttyUSB0',
-    'BT: RocketFC-001',
-    'BT: GroundStation-X',
-  ];
-  String? _selectedConnection;
 
   @override
   Widget build(BuildContext context) {
@@ -31,174 +60,110 @@ class _PreFlightPageState extends State<PreFlightPage> {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // LEFT PANEL: Connection + Status
+          // LEFT PANEL: GS
           Expanded(
             flex: 2,
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                _sectionTitle('Connection'),
-                Card(
-                  child: Padding(
-                    padding: const EdgeInsets.all(12),
-                    child: Column(
-                      children: [
-                        DropdownButtonFormField<String>(
-                          value: _selectedConnection,
-                          hint: const Text('Select Connection'),
-                          items:
-                              _availableConnections.map((c) {
-                                return DropdownMenuItem(
-                                  value: c,
-                                  child: Text(c),
-                                );
-                              }).toList(),
-                          onChanged:
-                              (val) =>
-                                  setState(() => _selectedConnection = val),
-                        ),
-                        const SizedBox(height: 12),
-                        ElevatedButton(
-                          onPressed: () {
-                            setState(
-                              () =>
-                                  _connection =
-                                      'Connected via ${_selectedConnection ?? '??'}',
-                            );
-                          },
-                          child: const Text('Connect'),
-                        ),
-                        const SizedBox(height: 8),
-                        Text('Status: $_connection'),
-                      ],
-                    ),
-                  ),
+                _sectionTitle('Ground Station'),
+                DropdownButtonFormField<GroundStation>(
+                  value: _selectedGS,
+                  hint: const Text('Select GS'),
+                  items: groundStations.map((gs) {
+                    return DropdownMenuItem(
+                      value: gs,
+                      child: Text(gs.name),
+                    );
+                  }).toList(),
+                  onChanged: (gs) => setState(() {
+                    _selectedGS = gs;
+                    _selectedFC = null;
+                  }),
                 ),
-                const SizedBox(height: 24),
-                _sectionTitle('Status'),
-                Card(
-                  child: Padding(
-                    padding: const EdgeInsets.all(12),
-                    child: Column(
-                      children: [
-                        _statusRow(
-                          Icons.battery_full,
-                          'Battery',
-                          '${(_battery * 100).round()}%',
-                        ),
-                        const SizedBox(height: 8),
-                        _statusRow(
-                          Icons.network_cell,
-                          'Signal',
-                          'RSSI: $_rssi dBm',
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                const SizedBox(height: 12),
+                Text('Status: ${_selectedGS?.isConnected == true ? 'Connected' : 'Disconnected'}'),
+                const SizedBox(height: 12),
+                const Text('Available FCs:'),
+                if (_selectedGS != null)
+                  ..._selectedGS!.connectedFCs.map((fc) => ListTile(
+                        title: Text(fc.name),
+                        subtitle: Text('Battery: ${(fc.batteryLevel * 100).round()}%'),
+                        onTap: () => setState(() => _selectedFC = fc),
+                        selected: _selectedFC == fc,
+                      )),
               ],
             ),
           ),
 
           const SizedBox(width: 24),
 
-          // MIDDLE PANEL: Flight Config
+          // RIGHT PANEL: FC
           Expanded(
             flex: 3,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _sectionTitle('Flight Configuration'),
-                Card(
-                  child: Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: Column(
-                      children: [
-                        _buildNumberField(
-                          'Apogee Deploy Altitude (m)',
-                          _apogeeAltController,
-                        ),
-                        _buildNumberField(
-                          'Main Deploy Altitude (m)',
-                          _mainAltController,
-                        ),
-                        _buildNumberField(
-                          'Number of Parachutes',
-                          _chutesController,
-                        ),
-                        Row(
-                          children: [
-                            Checkbox(
-                              value: _useDrogue,
-                              onChanged:
-                                  (val) =>
-                                      setState(() => _useDrogue = val ?? false),
-                            ),
-                            const Text('Use Drogue Chute'),
-                          ],
-                        ),
-                        const SizedBox(height: 12),
-                        ElevatedButton.icon(
-                          icon: const Icon(Icons.upload),
-                          label: const Text('Upload Config'),
-                          onPressed: () {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text('Configuration uploaded'),
-                              ),
-                            );
-                          },
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-
-          const SizedBox(width: 24),
-
-          // RIGHT PANEL: Firmware Flash + Placeholder
-          Expanded(
-            flex: 2,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _sectionTitle('Firmware'),
-                Card(
-                  child: Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: ElevatedButton.icon(
-                      icon: const Icon(Icons.flash_on),
-                      label: const Text('Flash Latest Firmware'),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.deepOrange,
+            child: _selectedFC == null
+                ? const Center(child: Text('Select a Flight Computer'))
+                : Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      _sectionTitle('Flight Computer: ${_selectedFC!.name}'),
+                      _statusRow(Icons.battery_full, 'Battery', '${(_selectedFC!.batteryLevel * 100).round()}%'),
+                      _statusRow(Icons.network_cell, 'Signal', 'RSSI: ${_selectedFC!.rssi} dBm'),
+                      const SizedBox(height: 16),
+                      _sectionTitle('Flight Configuration'),
+                      _buildNumberField('Apogee Deploy Altitude (m)', _apogeeAltController),
+                      _buildNumberField('Main Deploy Altitude (m)', _mainAltController),
+                      _buildNumberField('Number of Parachutes', _chutesController),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Checkbox(
+                            value: _useDrogue,
+                            onChanged: (val) => setState(() => _useDrogue = val ?? false),
+                          ),
+                          const Text('Use Drogue Chute'),
+                        ],
                       ),
-                      onPressed: () {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Flashing firmware...')),
-                        );
-                      },
-                    ),
+                      const SizedBox(height: 12),
+                      ElevatedButton.icon(
+                        icon: const Icon(Icons.upload),
+                        label: const Text('Upload Config'),
+                        onPressed: _uploadConfig,
+                      ),
+                      const SizedBox(height: 24),
+                      _sectionTitle('Firmware'),
+                      ElevatedButton.icon(
+                        icon: const Icon(Icons.flash_on),
+                        label: const Text('Flash Latest Firmware'),
+                        style: ElevatedButton.styleFrom(backgroundColor: Colors.deepOrange),
+                        onPressed: _flashFirmware,
+                      ),
+                      const SizedBox(height: 24),
+                      _sectionTitle('Logs / Output'),
+                      Card(
+                        child: Container(
+                          height: 150,
+                          padding: const EdgeInsets.all(12),
+                          child: const Text('TODO: Show connection logs or upload status here'),
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-                const SizedBox(height: 24),
-                _sectionTitle('Logs / Output'),
-                Card(
-                  child: Container(
-                    height: 150,
-                    padding: const EdgeInsets.all(12),
-                    child: const Text(
-                      'TODO: Show connection logs or upload status here',
-                    ),
-                  ),
-                ),
-              ],
-            ),
           ),
         ],
       ),
+    );
+  }
+
+  void _uploadConfig() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Configuration uploaded')),
+    );
+  }
+
+  void _flashFirmware() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Flashing firmware...')),
     );
   }
 
@@ -210,24 +175,31 @@ class _PreFlightPageState extends State<PreFlightPage> {
   }
 
   Widget _statusRow(IconData icon, String label, String value) {
-    return Row(
-      children: [
-        Icon(icon, size: 24),
-        const SizedBox(width: 8),
-        Text('$label: $value', style: const TextStyle(fontSize: 16)),
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 4),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(icon, size: 24),
+          const SizedBox(width: 8),
+          Text('$label: $value', style: const TextStyle(fontSize: 16)),
+        ],
+      ),
     );
   }
 
   Widget _buildNumberField(String label, TextEditingController controller) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 6),
-      child: TextField(
-        controller: controller,
-        keyboardType: TextInputType.number,
-        decoration: InputDecoration(
-          labelText: label,
-          border: const OutlineInputBorder(),
+      child: SizedBox(
+        width: 300,
+        child: TextField(
+          controller: controller,
+          keyboardType: TextInputType.number,
+          decoration: InputDecoration(
+            labelText: label,
+            border: const OutlineInputBorder(),
+          ),
         ),
       ),
     );
