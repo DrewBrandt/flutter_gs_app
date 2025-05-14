@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gs_app/notifiers/flight_computer_notifier.dart';
+import 'package:flutter_gs_app/notifiers/flight_computer_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class HeaderBar extends ConsumerWidget {
@@ -15,7 +15,7 @@ class HeaderBar extends ConsumerWidget {
     return Container(
       height: 64,
       padding: const EdgeInsets.symmetric(horizontal: 16),
-      color: Theme.of(context).colorScheme.primary,
+      color: isDark ? Theme.of(context).colorScheme.onPrimary: Theme.of(context).colorScheme.primary,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

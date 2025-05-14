@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gs_app/views/common/title_text.dart';
 
 class FlightPage extends StatelessWidget {
   const FlightPage({super.key});
@@ -16,7 +17,7 @@ class FlightPage extends StatelessWidget {
             flex: 2,
             child: Column(
               children: [
-                _sectionTitle('Rocket View', theme),
+                TitleText(title: 'Rocket View', theme: theme),
                 Expanded(
                   child: Container(
                     decoration: BoxDecoration(
@@ -48,7 +49,7 @@ class FlightPage extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 24),
-                _sectionTitle('Flight Data', theme),
+                TitleText(title: 'Flight Data', theme: theme),
                 DefaultTabController(
                   length: 2,
                   child: Column(
@@ -98,7 +99,7 @@ class FlightPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _sectionTitle('Extra Telemetry', theme),
+                TitleText(title: 'Extra Telemetry', theme: theme),
                 Card(
                   color: theme.colorScheme.surface,
                   child: Padding(
@@ -120,16 +121,6 @@ class FlightPage extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _sectionTitle(String title, ThemeData theme) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 12),
-      child: Text(
-        title,
-        style: theme.textTheme.titleLarge,
       ),
     );
   }
@@ -160,6 +151,8 @@ class FlightPage extends StatelessWidget {
     );
   }
 }
+
+
 
 class _TelemetryRow extends StatelessWidget {
   final String label;
