@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gs_app/views/body/pre_flight/ground_station_config.dart';
+import 'package:flutter_gs_app/views/body/pre_flight/test.dart';
 import 'package:flutter_gs_app/views/common/title_text.dart';
 
 class PreFlightPage extends StatelessWidget {
@@ -23,19 +24,15 @@ class PreFlightPage extends StatelessWidget {
           ),
           Expanded(
             flex: 3,
-            child: Column(
-              children: [
-                Center(
-                  child: TitleText(
-                    title: 'Flight Computer Configuration',
-                    theme: Theme.of(context),
-                  ),
-                ),
-              ],
-            ),
+            child: Column(children: [Center(child: TitleText(title: 'Flight Computer Configuration', theme: Theme.of(context)))]),
           ),
         ],
       ),
     );
   }
+
+// @override
+//   Widget build(BuildContext context) {
+//     return Test();
+//   }
 }

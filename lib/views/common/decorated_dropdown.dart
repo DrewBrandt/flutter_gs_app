@@ -23,15 +23,15 @@ class LabeledDropdown<T> extends StatelessWidget {
         labelText: label,
         contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
-        labelStyle: TextStyle(color: theme.colorScheme.secondary)
+        labelStyle: TextStyle(color: theme.colorScheme.primary)
       ),
       isEmpty: value == null,
       child: DropdownButtonHideUnderline(
         child: DropdownButton<T>(
-          isExpanded: true,
           value: value,
           items: items,
           onChanged: onChanged,
+          focusColor: Colors.transparent,
         ),
       ),
     );

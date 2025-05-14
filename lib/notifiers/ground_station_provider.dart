@@ -1,9 +1,58 @@
 import 'package:collection/collection.dart';
+import 'package:flutter_gs_app/models/flight_computer_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:flutter_gs_app/models/ground_station_model.dart';
+import 'package:vector_math/vector_math.dart';
 
 part 'ground_station_provider.g.dart';
+
+final Map<FlightComputerModel, Relationship> knownFCs = {
+  FlightComputerModel(
+    position: Vector3(0, 0, 0),
+    velocity: Vector3(0, 0, 0),
+    acceleration: Vector3(0, 0, 0),
+    orientation: Vector4(0, 0, 0, 1),
+    stage: 0,
+    batteryLevel: 0.97,
+    RSSI: -52,
+    id: 101,
+    name: 'Falcon Alpha',
+    temperature: 32.0,
+    hasGPSLock: true,
+    flightName: 'Test Flight 1',
+  ): Relationship.connected,
+
+  FlightComputerModel(
+    position: Vector3(10, 5, 3),
+    velocity: Vector3(0.1, 0.2, 0),
+    acceleration: Vector3(0, -9.8, 0),
+    orientation: Vector4(0.1, 0.2, 0.3, 0.9),
+    stage: 1,
+    batteryLevel: 0.58,
+    RSSI: -68,
+    id: 102,
+    name: 'Bravo Node',
+    temperature: 29.5,
+    hasGPSLock: false,
+    flightName: 'Static Fire',
+  ): Relationship.tryConnect,
+
+  FlightComputerModel(
+    position: Vector3(30, -15, 2),
+    velocity: Vector3(0, 0, 0),
+    acceleration: Vector3.zero(),
+    orientation: Vector4(0, 0, 0, 1),
+    stage: 0,
+    batteryLevel: 0.12,
+    RSSI: -90,
+    id: 103,
+    name: 'Charlie Tracker',
+    temperature: 41.2,
+    hasGPSLock: false,
+    flightName: 'Scrubbed Launch',
+  ): Relationship.doNotConnect,
+};
 
 /// Manages the list of all available ground stations.
 @Riverpod(
@@ -14,25 +63,25 @@ class GroundStationList extends _$GroundStationList {
   List<GroundStationModel> build() {
     // Initialize with default data or load from a persistent source
     return [
-      const GroundStationModel(
+      GroundStationModel(
         id: 0,
         name: 'Alpha Base GS',
         batteryLevel: 1.0,
         firmwareVersion: '0.0.1',
-        knownFCs: {},
+        knownFCs: knownFCs,
         conViaUSB: true,
         isConnected: true,
       ),
-      const GroundStationModel(
+      GroundStationModel(
         id: 1,
         name: 'Bravo Outpost GS',
         batteryLevel: 0.5,
         firmwareVersion: '0.0.1',
-        knownFCs: {},
+        knownFCs: knownFCs,
         conViaUSB: false,
         isConnected: true,
       ),
-      const GroundStationModel(
+      GroundStationModel(
         id: 2,
         name: 'Charlie Camp GS',
         batteryLevel: 0.1,
