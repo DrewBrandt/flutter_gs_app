@@ -23,7 +23,7 @@ class FlightPage extends StatelessWidget {
                     decoration: BoxDecoration(
                       border: Border.all(color: theme.dividerColor),
                       borderRadius: BorderRadius.circular(12),
-                      color: theme.colorScheme.surface,
+                      color: theme.colorScheme.surfaceContainerLow,
                     ),
                     child: const Center(child: Text('🚀 Placeholder SVG')),
                   ),
@@ -55,9 +55,6 @@ class FlightPage extends StatelessWidget {
                   child: Column(
                     children: [
                       TabBar(
-                        labelColor: theme.colorScheme.primary,
-                        unselectedLabelColor: Colors.black54,
-                        indicatorColor: theme.colorScheme.primary,
                         tabs: const [
                           Tab(text: 'Map'),
                           Tab(text: 'Altitude/Speed'),
@@ -69,14 +66,14 @@ class FlightPage extends StatelessWidget {
                           children: [
                             // Fake map
                             Container(
-                              color: theme.colorScheme.surface,
+                              color: theme.colorScheme.surfaceContainerLow,
                               child: const Center(
                                 child: Text('🗺️ Fake map with path trace'),
                               ),
                             ),
                             // Fake Alt graph
                             Container(
-                              color: theme.colorScheme.surface,
+                              color: theme.colorScheme.surfaceContainerLow,
                               child: const Center(
                                 child: Text('📈 Altitude/Speed vs Time Graph'),
                               ),
@@ -101,7 +98,6 @@ class FlightPage extends StatelessWidget {
               children: [
                 TitleText(title: 'Extra Telemetry', theme: theme),
                 Card(
-                  color: theme.colorScheme.surface,
                   child: Padding(
                     padding: const EdgeInsets.all(12),
                     child: Column(
@@ -128,12 +124,11 @@ class FlightPage extends StatelessWidget {
   Widget _infoCard(String label, String value, IconData icon, ThemeData theme) {
     return Expanded(
       child: Card(
-        color: theme.colorScheme.surface,
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Column(
             children: [
-              Icon(icon, size: 30, color: theme.colorScheme.primary),
+              Icon(icon),
               const SizedBox(height: 8),
               Text(
                 value,

@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart' as fm;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/flight_computer_model.dart';
 import 'package:vector_math/vector_math.dart';
@@ -23,7 +24,7 @@ class FlightComputerNotifier extends Notifier<FlightComputerModel> {
       temperature: 0,
       hasGPSLock: false,
       flightName: 'Test Flight 001',
-      
+      color: fm.Colors.blue,
     );
   }
 

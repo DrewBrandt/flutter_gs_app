@@ -25,8 +25,10 @@ class LabeledDropdown<T> extends StatelessWidget {
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
         labelStyle: TextStyle(color: theme.colorScheme.primary)
       ),
+      expands: true,
       isEmpty: value == null,
       child: DropdownButtonHideUnderline(
+        
         child: DropdownButton<T>(
           value: value,
           items: items,

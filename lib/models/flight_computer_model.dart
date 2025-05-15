@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:vector_math/vector_math.dart';
 
@@ -20,5 +21,6 @@ sealed class FlightComputerModel with _$FlightComputerModel {
     required double temperature,
     required bool hasGPSLock,
     required String flightName,
+    required Color? color,
   }) = _FlightComputerModel;
 }

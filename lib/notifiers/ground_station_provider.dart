@@ -1,4 +1,5 @@
 import 'package:collection/collection.dart';
+import 'package:flutter/material.dart' as fm;
 import 'package:flutter_gs_app/models/flight_computer_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -9,50 +10,109 @@ part 'ground_station_provider.g.dart';
 
 final Map<FlightComputerModel, Relationship> knownFCs = {
   FlightComputerModel(
-    position: Vector3(0, 0, 0),
-    velocity: Vector3(0, 0, 0),
-    acceleration: Vector3(0, 0, 0),
-    orientation: Vector4(0, 0, 0, 1),
-    stage: 0,
-    batteryLevel: 0.97,
-    RSSI: -52,
-    id: 101,
-    name: 'Falcon Alpha',
-    temperature: 32.0,
-    hasGPSLock: true,
-    flightName: 'Test Flight 1',
-  ): Relationship.connected,
+        position: Vector3(0, 0, 0),
+        velocity: Vector3(0, 0, 0),
+        acceleration: Vector3(0, 0, 0),
+        orientation: Vector4(0, 0, 0, 1),
+        stage: 0,
+        batteryLevel: 0.97,
+        RSSI: -52,
+        id: 101,
+        name: 'Falcon Alpha',
+        temperature: 32.0,
+        hasGPSLock: true,
+        flightName: 'Test Flight 1',
+        color: fm.Colors.amber,
+      ):
+      Relationship.connected,
 
   FlightComputerModel(
-    position: Vector3(10, 5, 3),
-    velocity: Vector3(0.1, 0.2, 0),
-    acceleration: Vector3(0, -9.8, 0),
-    orientation: Vector4(0.1, 0.2, 0.3, 0.9),
-    stage: 1,
-    batteryLevel: 0.58,
-    RSSI: -68,
-    id: 102,
-    name: 'Bravo Node',
-    temperature: 29.5,
-    hasGPSLock: false,
-    flightName: 'Static Fire',
-  ): Relationship.tryConnect,
+        position: Vector3(10, 5, 3),
+        velocity: Vector3(0.1, 0.2, 0),
+        acceleration: Vector3(0, -9.8, 0),
+        orientation: Vector4(0.1, 0.2, 0.3, 0.9),
+        stage: 1,
+        batteryLevel: 0.58,
+        RSSI: -68,
+        id: 102,
+        name: 'Bravo Node',
+        temperature: 29.5,
+        hasGPSLock: false,
+        flightName: 'Static Fire',
+        color: fm.Colors.blue,
+      ):
+      Relationship.tryConnect,
 
   FlightComputerModel(
-    position: Vector3(30, -15, 2),
-    velocity: Vector3(0, 0, 0),
-    acceleration: Vector3.zero(),
-    orientation: Vector4(0, 0, 0, 1),
-    stage: 0,
-    batteryLevel: 0.12,
-    RSSI: -90,
-    id: 103,
-    name: 'Charlie Tracker',
-    temperature: 41.2,
-    hasGPSLock: false,
-    flightName: 'Scrubbed Launch',
-  ): Relationship.doNotConnect,
+        position: Vector3(30, -15, 2),
+        velocity: Vector3(0, 0, 0),
+        acceleration: Vector3.zero(),
+        orientation: Vector4(0, 0, 0, 1),
+        stage: 0,
+        batteryLevel: 0.12,
+        RSSI: -90,
+        id: 103,
+        name: 'Charlie Tracker',
+        temperature: 41.2,
+        hasGPSLock: false,
+        flightName: 'Scrubbed Launch',
+        color: fm.Colors.deepOrange,
+      ):
+      Relationship.doNotConnect,
+
+  // Three more with random/mock values:
+  FlightComputerModel(
+        position: Vector3(5, 12, -3),
+        velocity: Vector3(0.3, -0.1, 0.05),
+        acceleration: Vector3(0.0, -9.8, 0.1),
+        orientation: Vector4(0.0, 0.7, 0.7, 0.1),
+        stage: 2,
+        batteryLevel: 0.75,
+        RSSI: -58,
+        id: 104,
+        name: 'Delta Scout',
+        temperature: 35.4,
+        hasGPSLock: true,
+        flightName: 'Orbital Test',
+        color: fm.Colors.deepPurple,
+      ):
+      Relationship.connected,
+
+  FlightComputerModel(
+        position: Vector3(-8, 4, 15),
+        velocity: Vector3(-0.2, 0.0, -0.3),
+        acceleration: Vector3(0.1, -9.7, -0.1),
+        orientation: Vector4(0.2, 0.2, 0.9, 0.1),
+        stage: 1,
+        batteryLevel: 0.42,
+        RSSI: -75,
+        id: 105,
+        name: 'Echo Observer',
+        temperature: 28.7,
+        hasGPSLock: true,
+        flightName: 'High Altitude',
+        color: fm.Colors.green,
+      ):
+      Relationship.tryConnect,
+
+  FlightComputerModel(
+        position: Vector3(20, 0, 20),
+        velocity: Vector3(0.0, 0.5, 0.0),
+        acceleration: Vector3(0.0, -9.6, 0.0),
+        orientation: Vector4(0.5, 0.5, 0.5, 0.5),
+        stage: 3,
+        batteryLevel: 0.18,
+        RSSI: -85,
+        id: 106,
+        name: 'Foxtrot Probe',
+        temperature: 45.1,
+        hasGPSLock: false,
+        flightName: 'Reentry Trial',
+        color: fm.Colors.indigo,
+      ):
+      Relationship.doNotConnect,
 };
+
 
 /// Manages the list of all available ground stations.
 @Riverpod(
@@ -71,6 +131,7 @@ class GroundStationList extends _$GroundStationList {
         knownFCs: knownFCs,
         conViaUSB: true,
         isConnected: true,
+        color: fm.Colors.lime,
       ),
       GroundStationModel(
         id: 1,
@@ -80,6 +141,7 @@ class GroundStationList extends _$GroundStationList {
         knownFCs: knownFCs,
         conViaUSB: false,
         isConnected: true,
+        color: fm.Colors.pinkAccent,
       ),
       GroundStationModel(
         id: 2,
@@ -89,6 +151,7 @@ class GroundStationList extends _$GroundStationList {
         knownFCs: {},
         conViaUSB: false,
         isConnected: false,
+        color: fm.Colors.teal,
       ),
     ];
   }

@@ -26,6 +26,8 @@ class _RocketAppState extends State<RocketApp> {
 
   @override
   Widget build(BuildContext context) {
+    print(darkTheme.colorScheme.toString());
+    print(lightTheme.colorScheme.toString());
     return MaterialApp(
       title: 'Rocket Ground Station',
       debugShowCheckedModeBanner: false,

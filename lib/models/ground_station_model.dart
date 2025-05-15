@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_gs_app/models/flight_computer_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -20,5 +21,6 @@ sealed class GroundStationModel with _$GroundStationModel {
     required bool conViaUSB,
     required Map<FlightComputerModel, Relationship> knownFCs,
     required bool isConnected,
+    required Color? color,
   }) = _GroundStationModel;
 }

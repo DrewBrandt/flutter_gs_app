@@ -7,21 +7,21 @@ class BatteryIcon extends StatelessWidget {
   BatteryIcon({super.key, required this.level, this.iconSize, this.isFC = true});
 
 final List<(double, IconData)> fcBatteryIcons = [
-    (0.89, Icons.battery_full),
-    (0.74, Icons.battery_6_bar),
-    (0.49, Icons.battery_4_bar),
-    (0.39, Icons.battery_2_bar),
-    (0.34, Icons.battery_1_bar),
-    (0.00, Icons.battery_alert),
+    (0.89, Icons.battery_full_rounded),
+    (0.74, Icons.battery_6_bar_rounded),
+    (0.49, Icons.battery_4_bar_rounded),
+    (0.39, Icons.battery_2_bar_rounded),
+    (0.34, Icons.battery_1_bar_rounded),
+    (0.00, Icons.battery_alert_rounded),
   ];
 
   final List<(double, IconData)> gsBatteryIcons = [
-    (0.89, Icons.battery_full),
-    (0.66, Icons.battery_6_bar),
-    (0.34, Icons.battery_4_bar),
-    (0.24, Icons.battery_2_bar),
-    (0.1, Icons.battery_1_bar),
-    (0.00, Icons.battery_alert),
+    (0.89, Icons.battery_full_rounded),
+    (0.66, Icons.battery_6_bar_rounded),
+    (0.34, Icons.battery_4_bar_rounded),
+    (0.24, Icons.battery_2_bar_rounded),
+    (0.1, Icons.battery_1_bar_rounded),
+    (0.00, Icons.battery_alert_rounded),
   ];
 
   IconData _getBatteryIcon() {

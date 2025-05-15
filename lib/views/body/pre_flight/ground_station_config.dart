@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gs_app/notifiers/ground_station_provider.dart';
-import 'package:flutter_gs_app/views/body/pre_flight/test.dart';
 import 'package:flutter_gs_app/views/common/battery_icon.dart';
+import 'package:flutter_gs_app/views/common/color_picker.dart';
 import 'package:flutter_gs_app/views/common/decorated_dropdown.dart';
 import 'package:flutter_gs_app/views/common/fc_list_view.dart';
 import 'package:flutter_gs_app/views/common/title_text.dart';
@@ -27,6 +27,7 @@ class GroundStationConfig extends ConsumerWidget {
           child: Column(
             children: [
               TitleText(title: 'Ground Stations', theme: theme),
+              SizedBox(height: 20),
               SizedBox(
                 height: 60,
                 child: Row(
@@ -48,20 +49,30 @@ class GroundStationConfig extends ConsumerWidget {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Text(
-                                        gs.name,
-                                        style: TextStyle(
-                                          color:
-                                              gs.isConnected
-                                                  ? null
-                                                  : theme
-                                                      .colorScheme
-                                                      .primaryFixed,
-                                        ),
+                                      Row(
+                                        children: [
+                                          ColorPickerButton(
+                                            color: gs.color ?? Colors.black,
+                                            onPickNewColor: (Color? c) => {},
+                                          ),
+                                          SizedBox(width: 10),
+                                          Text(
+                                            gs.name,
+                                            style: TextStyle(
+                                              color:
+                                                  gs.isConnected
+                                                      ? null
+                                                      : theme
+                                                          .colorScheme
+                                                          .primaryFixed,
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                       SizedBox(width: 10),
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.end,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
                                         children: [
                                           Tooltip(
                                             message:
@@ -121,7 +132,9 @@ class GroundStationConfig extends ConsumerWidget {
                           labelStyle: TextStyle(
                             color: theme.colorScheme.primary,
                           ),
+                          contentPadding: EdgeInsets.symmetric(horizontal: 15),
                         ),
+                        expands: true,
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
@@ -129,7 +142,6 @@ class GroundStationConfig extends ConsumerWidget {
                               onPressed: () => {},
                               icon: Icon(
                                 Icons.edit,
-                                color: theme.colorScheme.primary,
                               ), // TODO, change to text field icon
                               tooltip: 'Rename',
                               style: ButtonStyle(
@@ -166,30 +178,36 @@ class GroundStationConfig extends ConsumerWidget {
                 ),
               ),
               SizedBox(height: 20),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: SubTitleText(
-                  subtitle: 'Available Flight Computers',
-                  theme: theme,
-                ),
+              Row(
+                children: [
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: SubTitleText(
+                      subtitle: 'Available Flight Computers',
+                      theme: theme,
+                    ),
+                  ),
+                  Expanded(child: Container()),
+                  Tooltip(
+                    message: 'Rediscover removed devices',
+                    child: IconButton(
+                      onPressed: () => {},
+                      icon: Icon(Icons.refresh_rounded),
+                    ),
+                  ),
+                ],
               ),
-              gs != null && gs.knownFCs.isNotEmpty
-                  ? FlightComputerListView(knownFCs: gs.knownFCs)
-                  : SizedBox(height: 200),
-              ElevatedButton(
-                onPressed:
-                    gs == null
-                        ? null
-                        : () {
-                          ref
-                              .read(groundStationListProvider.notifier)
-                              .updateGS(
-                                gs.copyWith(
-                                  batteryLevel: gs.batteryLevel - 0.02,
-                                ),
-                              );
-                        },
-                child: const Text('Drain the Battery'),
+              ConstrainedBox(
+                constraints: BoxConstraints(maxHeight: 400),
+                child:
+                    gs != null && gs.knownFCs.isNotEmpty
+                        ? FlightComputerListScrollView(fcList: gs.knownFCs)
+                        : Card(
+                          color: theme.colorScheme.surfaceContainerLow,
+                          child: Center(
+                            child: Text('Connect to a Ground Station'),
+                          ),
+                        ),
               ),
             ],
           ),
