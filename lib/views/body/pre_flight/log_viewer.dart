@@ -1,22 +1,9 @@
 // device_log_viewer.dart
 import 'package:flutter/material.dart';
+import 'package:flutter_gs_app/models/device_data.dart';
 import 'dart:collection';
 
-// Mocked DeviceData model
-class DeviceData {
-  final int id;
-  String name;
-  Color color;
-
-  DeviceData({required this.id, required this.name, required this.color});
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) || (other is DeviceData && other.id == id);
-
-  @override
-  int get hashCode => id.hashCode;
-}
+import 'package:flutter_gs_app/notifiers/ground_station_provider.dart';
 
 // Device log entry
 class DeviceLogEntry {
@@ -76,27 +63,49 @@ class DeviceLogView extends StatelessWidget {
         return Container(
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
-            border: Border.all(color: Colors.grey.shade300),
+            border: Border.all(color: Theme.of(context).disabledColor),
             borderRadius: BorderRadius.circular(8),
           ),
-          child: ListView.builder(
-            itemCount: logs.length,
-            reverse: false,
-            itemBuilder: (context, index) {
-              final log = logs[index];
-              return Container(
-                margin: const EdgeInsets.symmetric(vertical: 2),
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
-                decoration: BoxDecoration(
-                  color: log.device.color.withOpacity(0.2),
-                  borderRadius: BorderRadius.circular(6),
-                ),
-                child: Text(
-                  '[${log.timestamp.toIso8601String().split("T").last.split(".").first}] '
-                  '${log.device.name}: ${log.message}',
-                ),
-              );
-            },
+          child: SelectionArea(
+            child: ListView.builder(
+              itemCount: logs.length,
+
+              reverse: true,
+              itemBuilder: (context, index) {
+                final log = logs[logs.length - index - 1];
+                return Container(
+                  color: log.device.color,
+                  padding: EdgeInsets.symmetric(horizontal: 8),
+                  margin: const EdgeInsets.symmetric(vertical: 1).copyWith(right: 12),
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 6,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Theme.of(
+                        context,
+                      ).scaffoldBackgroundColor.withAlpha(180),
+                    ),
+                    child: Text.rich(
+                      TextSpan(
+                        children: [
+                          TextSpan(
+                            text:
+                                '${log.timestamp.toIso8601String().split("T").last.split(".").first} | ',
+                          ),
+                          TextSpan(
+                            text: log.device.name,
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          TextSpan(text: ': ${log.message}'),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
           ),
         );
       },
@@ -113,16 +122,11 @@ class DeviceLogDemo extends StatefulWidget {
 }
 
 class _DeviceLogDemoState extends State<DeviceLogDemo> {
-  final DeviceData device1 = DeviceData(
-    id: 1,
-    name: 'Falcon Alpha',
-    color: Colors.amber,
-  );
-  final DeviceData device2 = DeviceData(
-    id: 2,
-    name: 'Bravo Node',
-    color: Colors.lightBlue,
-  );
+  final DeviceData device1 =
+      knownFCs.keys.firstWhere((fc) => fc.data.id == 101).data;
+  final DeviceData device2 =
+      knownFCs.keys.firstWhere((fc) => fc.data.id == 103).data;
+
   late final DeviceLogController _controller;
 
   @override
@@ -154,7 +158,7 @@ class _DeviceLogDemoState extends State<DeviceLogDemo> {
             const SizedBox(width: 8),
             ElevatedButton(
               onPressed: () => _logTestMessage(device2),
-              child: const Text('Log Bravo'),
+              child: const Text('Log Charlie'),
             ),
             const SizedBox(width: 8),
             ElevatedButton(

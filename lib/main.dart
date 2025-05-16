@@ -15,7 +15,7 @@ class RocketApp extends StatefulWidget {
 }
 
 class _RocketAppState extends State<RocketApp> {
-  ThemeMode _themeMode = ThemeMode.light;
+  ThemeMode _themeMode = ThemeMode.dark;
 
   void toggleTheme() {
     setState(() {

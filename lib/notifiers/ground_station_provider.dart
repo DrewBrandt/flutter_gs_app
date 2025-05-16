@@ -1,7 +1,7 @@
 import 'package:collection/collection.dart';
-import 'package:flutter/material.dart' as fm;
 import 'package:flutter_gs_app/models/device_data.dart';
 import 'package:flutter_gs_app/models/flight_computer_model.dart';
+import 'package:flutter_gs_app/views/common/color_picker.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:flutter_gs_app/models/ground_station_model.dart';
@@ -22,7 +22,7 @@ final Map<FlightComputerModel, Relationship> knownFCs = {
           rssi: -52,
           name: 'Falcon Alpha',
           type: DeviceType.fc,
-          color: fm.Colors.amber,
+          color: colorOptions[0],
           firmwareVer: '0.0.1',
           conStatus: ConStatus.conLoRa,
         ),
@@ -44,7 +44,7 @@ final Map<FlightComputerModel, Relationship> knownFCs = {
           type: DeviceType.fc,
           rssi: -108,
           name: 'Bravo Node',
-          color: fm.Colors.blue,
+          color: colorOptions[1],
           firmwareVer: '0.0.1',
           conStatus: ConStatus.conLoRa,
         ),
@@ -66,7 +66,7 @@ final Map<FlightComputerModel, Relationship> knownFCs = {
           rssi: -90,
           type: DeviceType.fc,
           name: 'Charlie Tracker',
-          color: fm.Colors.deepOrange,
+          color: colorOptions[2],
           firmwareVer: '0.0.1',
           conStatus: ConStatus.conLoRa,
         ),
@@ -88,7 +88,7 @@ final Map<FlightComputerModel, Relationship> knownFCs = {
           rssi: -58,
           id: 104,
           name: 'Delta Scout',
-          color: fm.Colors.deepPurple,
+          color: colorOptions[3],
           firmwareVer: '0.0.1',
           conStatus: ConStatus.advert,
         ),
@@ -110,7 +110,7 @@ final Map<FlightComputerModel, Relationship> knownFCs = {
           name: 'Echo Observer',
           rssi: -75,
           type: DeviceType.fc,
-          color: fm.Colors.green,
+          color: colorOptions[4],
           firmwareVer: '0.0.1',
           conStatus: ConStatus.noCon,
         ),
@@ -131,7 +131,7 @@ final Map<FlightComputerModel, Relationship> knownFCs = {
           id: 106,
           rssi: -85,
           name: 'Foxtrot Probe',
-          color: fm.Colors.indigo,
+          color: colorOptions[5],
           firmwareVer: '0.0.1',
           type: DeviceType.fc,
           conStatus: ConStatus.noCon,
@@ -159,7 +159,7 @@ class GroundStationList extends _$GroundStationList {
           name: 'Alpha Base GS',
           batteryLevel: 1.0,
           firmwareVer: '0.0.1',
-          color: fm.Colors.lime,
+          color: colorOptions[6],
           conStatus: ConStatus.conUSB,
           type: DeviceType.gs,
         ),
@@ -172,7 +172,7 @@ class GroundStationList extends _$GroundStationList {
           rssi: -85,
           batteryLevel: 0.5,
           firmwareVer: '0.0.1',
-          color: fm.Colors.pinkAccent,
+          color: colorOptions[7],
           type: DeviceType.gs,
           conStatus: ConStatus.conBT,
         ),
@@ -185,7 +185,7 @@ class GroundStationList extends _$GroundStationList {
           name: 'Charlie Camp GS',
           batteryLevel: 0.1,
           firmwareVer: '0.0.1',
-          color: fm.Colors.teal,
+          color: colorOptions[5],
           type: DeviceType.gs,
           conStatus: ConStatus.noCon,
         ),
