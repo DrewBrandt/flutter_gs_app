@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$GroundStationModel {
 
- int get id; String get name; double get batteryLevel; String get firmwareVersion; bool get conViaUSB; Map<FlightComputerModel, Relationship> get knownFCs; bool get isConnected; Color? get color;
+ Map<FlightComputerModel, Relationship> get knownFCs; DeviceData get data;
 /// Create a copy of GroundStationModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -26,16 +26,16 @@ $GroundStationModelCopyWith<GroundStationModel> get copyWith => _$GroundStationM
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is GroundStationModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.batteryLevel, batteryLevel) || other.batteryLevel == batteryLevel)&&(identical(other.firmwareVersion, firmwareVersion) || other.firmwareVersion == firmwareVersion)&&(identical(other.conViaUSB, conViaUSB) || other.conViaUSB == conViaUSB)&&const DeepCollectionEquality().equals(other.knownFCs, knownFCs)&&(identical(other.isConnected, isConnected) || other.isConnected == isConnected)&&(identical(other.color, color) || other.color == color));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is GroundStationModel&&const DeepCollectionEquality().equals(other.knownFCs, knownFCs)&&(identical(other.data, data) || other.data == data));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,name,batteryLevel,firmwareVersion,conViaUSB,const DeepCollectionEquality().hash(knownFCs),isConnected,color);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(knownFCs),data);
 
 @override
 String toString() {
-  return 'GroundStationModel(id: $id, name: $name, batteryLevel: $batteryLevel, firmwareVersion: $firmwareVersion, conViaUSB: $conViaUSB, knownFCs: $knownFCs, isConnected: $isConnected, color: $color)';
+  return 'GroundStationModel(knownFCs: $knownFCs, data: $data)';
 }
 
 
@@ -46,11 +46,11 @@ abstract mixin class $GroundStationModelCopyWith<$Res>  {
   factory $GroundStationModelCopyWith(GroundStationModel value, $Res Function(GroundStationModel) _then) = _$GroundStationModelCopyWithImpl;
 @useResult
 $Res call({
- int id, String name, double batteryLevel, String firmwareVersion, bool conViaUSB, Map<FlightComputerModel, Relationship> knownFCs, bool isConnected, Color? color
+ Map<FlightComputerModel, Relationship> knownFCs, DeviceData data
 });
 
 
-
+$DeviceDataCopyWith<$Res> get data;
 
 }
 /// @nodoc
@@ -63,20 +63,23 @@ class _$GroundStationModelCopyWithImpl<$Res>
 
 /// Create a copy of GroundStationModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? batteryLevel = null,Object? firmwareVersion = null,Object? conViaUSB = null,Object? knownFCs = null,Object? isConnected = null,Object? color = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? knownFCs = null,Object? data = null,}) {
   return _then(_self.copyWith(
-id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String,batteryLevel: null == batteryLevel ? _self.batteryLevel : batteryLevel // ignore: cast_nullable_to_non_nullable
-as double,firmwareVersion: null == firmwareVersion ? _self.firmwareVersion : firmwareVersion // ignore: cast_nullable_to_non_nullable
-as String,conViaUSB: null == conViaUSB ? _self.conViaUSB : conViaUSB // ignore: cast_nullable_to_non_nullable
-as bool,knownFCs: null == knownFCs ? _self.knownFCs : knownFCs // ignore: cast_nullable_to_non_nullable
-as Map<FlightComputerModel, Relationship>,isConnected: null == isConnected ? _self.isConnected : isConnected // ignore: cast_nullable_to_non_nullable
-as bool,color: freezed == color ? _self.color : color // ignore: cast_nullable_to_non_nullable
-as Color?,
+knownFCs: null == knownFCs ? _self.knownFCs : knownFCs // ignore: cast_nullable_to_non_nullable
+as Map<FlightComputerModel, Relationship>,data: null == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
+as DeviceData,
   ));
 }
-
+/// Create a copy of GroundStationModel
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$DeviceDataCopyWith<$Res> get data {
+  
+  return $DeviceDataCopyWith<$Res>(_self.data, (value) {
+    return _then(_self.copyWith(data: value));
+  });
+}
 }
 
 
@@ -84,14 +87,9 @@ as Color?,
 
 
 class _GroundStationModel implements GroundStationModel {
-  const _GroundStationModel({required this.id, required this.name, required this.batteryLevel, required this.firmwareVersion, required this.conViaUSB, required final  Map<FlightComputerModel, Relationship> knownFCs, required this.isConnected, required this.color}): _knownFCs = knownFCs;
+  const _GroundStationModel({required final  Map<FlightComputerModel, Relationship> knownFCs, required this.data}): _knownFCs = knownFCs;
   
 
-@override final  int id;
-@override final  String name;
-@override final  double batteryLevel;
-@override final  String firmwareVersion;
-@override final  bool conViaUSB;
  final  Map<FlightComputerModel, Relationship> _knownFCs;
 @override Map<FlightComputerModel, Relationship> get knownFCs {
   if (_knownFCs is EqualUnmodifiableMapView) return _knownFCs;
@@ -99,8 +97,7 @@ class _GroundStationModel implements GroundStationModel {
   return EqualUnmodifiableMapView(_knownFCs);
 }
 
-@override final  bool isConnected;
-@override final  Color? color;
+@override final  DeviceData data;
 
 /// Create a copy of GroundStationModel
 /// with the given fields replaced by the non-null parameter values.
@@ -112,16 +109,16 @@ _$GroundStationModelCopyWith<_GroundStationModel> get copyWith => __$GroundStati
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _GroundStationModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.batteryLevel, batteryLevel) || other.batteryLevel == batteryLevel)&&(identical(other.firmwareVersion, firmwareVersion) || other.firmwareVersion == firmwareVersion)&&(identical(other.conViaUSB, conViaUSB) || other.conViaUSB == conViaUSB)&&const DeepCollectionEquality().equals(other._knownFCs, _knownFCs)&&(identical(other.isConnected, isConnected) || other.isConnected == isConnected)&&(identical(other.color, color) || other.color == color));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _GroundStationModel&&const DeepCollectionEquality().equals(other._knownFCs, _knownFCs)&&(identical(other.data, data) || other.data == data));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,name,batteryLevel,firmwareVersion,conViaUSB,const DeepCollectionEquality().hash(_knownFCs),isConnected,color);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_knownFCs),data);
 
 @override
 String toString() {
-  return 'GroundStationModel(id: $id, name: $name, batteryLevel: $batteryLevel, firmwareVersion: $firmwareVersion, conViaUSB: $conViaUSB, knownFCs: $knownFCs, isConnected: $isConnected, color: $color)';
+  return 'GroundStationModel(knownFCs: $knownFCs, data: $data)';
 }
 
 
@@ -132,11 +129,11 @@ abstract mixin class _$GroundStationModelCopyWith<$Res> implements $GroundStatio
   factory _$GroundStationModelCopyWith(_GroundStationModel value, $Res Function(_GroundStationModel) _then) = __$GroundStationModelCopyWithImpl;
 @override @useResult
 $Res call({
- int id, String name, double batteryLevel, String firmwareVersion, bool conViaUSB, Map<FlightComputerModel, Relationship> knownFCs, bool isConnected, Color? color
+ Map<FlightComputerModel, Relationship> knownFCs, DeviceData data
 });
 
 
-
+@override $DeviceDataCopyWith<$Res> get data;
 
 }
 /// @nodoc
@@ -149,21 +146,24 @@ class __$GroundStationModelCopyWithImpl<$Res>
 
 /// Create a copy of GroundStationModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? batteryLevel = null,Object? firmwareVersion = null,Object? conViaUSB = null,Object? knownFCs = null,Object? isConnected = null,Object? color = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? knownFCs = null,Object? data = null,}) {
   return _then(_GroundStationModel(
-id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String,batteryLevel: null == batteryLevel ? _self.batteryLevel : batteryLevel // ignore: cast_nullable_to_non_nullable
-as double,firmwareVersion: null == firmwareVersion ? _self.firmwareVersion : firmwareVersion // ignore: cast_nullable_to_non_nullable
-as String,conViaUSB: null == conViaUSB ? _self.conViaUSB : conViaUSB // ignore: cast_nullable_to_non_nullable
-as bool,knownFCs: null == knownFCs ? _self._knownFCs : knownFCs // ignore: cast_nullable_to_non_nullable
-as Map<FlightComputerModel, Relationship>,isConnected: null == isConnected ? _self.isConnected : isConnected // ignore: cast_nullable_to_non_nullable
-as bool,color: freezed == color ? _self.color : color // ignore: cast_nullable_to_non_nullable
-as Color?,
+knownFCs: null == knownFCs ? _self._knownFCs : knownFCs // ignore: cast_nullable_to_non_nullable
+as Map<FlightComputerModel, Relationship>,data: null == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
+as DeviceData,
   ));
 }
 
-
+/// Create a copy of GroundStationModel
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$DeviceDataCopyWith<$Res> get data {
+  
+  return $DeviceDataCopyWith<$Res>(_self.data, (value) {
+    return _then(_self.copyWith(data: value));
+  });
+}
 }
 
 // dart format on

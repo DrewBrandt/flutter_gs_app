@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gs_app/notifiers/flight_computer_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class HeaderBar extends ConsumerWidget {
@@ -9,7 +8,6 @@ class HeaderBar extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final flightData = ref.watch(flightComputerProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Container(
@@ -44,23 +42,23 @@ class HeaderBar extends ConsumerWidget {
               const SizedBox(width: 20),
               _HeaderStat(
                 icon: Icons.signal_cellular_alt,
-                label: 'RSSI: ${flightData.RSSI.toStringAsFixed(0)} dBm',
+                label: 'RSSI: ${0} dBm',
               ),
               const SizedBox(width: 20),
               _HeaderStat(
                 icon: Icons.battery_full,
                 label:
-                    'Battery: ${(flightData.batteryLevel * 100).toStringAsFixed(0)}%',
+                    'Battery: ${0}%',
               ),
               const SizedBox(width: 20),
               _HeaderStat(
                 icon: Icons.flight_takeoff,
-                label: 'Stage: ${_stageName(flightData.stage)}',
+                label: 'Stage: ${_stageName(0)}',
               ),
               const SizedBox(width: 20),
               _HeaderStat(
                 icon: Icons.trending_up,
-                label: 'Alt: ${flightData.position.y.toStringAsFixed(0)} m',
+                label: 'Alt: ${0} m',
               ),
             ],
           ),

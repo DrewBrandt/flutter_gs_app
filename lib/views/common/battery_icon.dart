@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gs_app/models/device_data.dart';
 
 class BatteryIcon extends StatelessWidget {
-  final double level; // 0.0 to 1.0
+  final DeviceData data; // 0.0 to 1.0
   final double? iconSize;
-  final bool isFC;
-  BatteryIcon({super.key, required this.level, this.iconSize, this.isFC = true});
+  BatteryIcon({super.key, required this.data, this.iconSize});
 
 final List<(double, IconData)> fcBatteryIcons = [
     (0.89, Icons.battery_full_rounded),
@@ -25,26 +25,37 @@ final List<(double, IconData)> fcBatteryIcons = [
   ];
 
   IconData _getBatteryIcon() {
-    final curve = isFC ? fcBatteryIcons : gsBatteryIcons;
+    final curve = data.type == DeviceType.fc ? fcBatteryIcons : gsBatteryIcons;
     for (final (threshold, icon) in curve) {
-      if (level >= threshold) return icon;
+      if (data.batteryLevel >= threshold) return icon;
     }
     return Icons.battery_alert;
   }
 
   Color _getBatteryColor() {
-    if ((isFC && level >= 0.74) || level >= .49) return Colors.green;
-    if ((isFC && level >= 0.49) || level >=.24) return Colors.orange;
+    if ((data.type == DeviceType.fc && data.batteryLevel >= 0.74) || data.batteryLevel >= .49) return Colors.green;
+    if ((data.type == DeviceType.fc && data.batteryLevel >= 0.49) || data.batteryLevel >=.24) return Colors.orange;
     return Colors.red;
   }
 
   @override
   Widget build(BuildContext context) {
-    return Tooltip(
-      message: '${(level * 100).round()}%',
+    final size = iconSize ?? Theme.of(context).iconTheme.size;
+
+    return data.conStatus == ConStatus.noCon ?
+    Tooltip(
+      message: 'Offline',
+      child: Icon(Icons.battery_unknown_rounded,
+      size: size,
+      color: Theme.of(context).disabledColor,
+          )
+    )
+    :
+    Tooltip(
+      message: '${(data.batteryLevel * 100).round()}%',
       child: Icon(
         _getBatteryIcon(),
-        size: iconSize ?? Theme.of(context).iconTheme.size,
+        size: size,
         color: _getBatteryColor(),
       ),
     );
@@ -54,13 +65,22 @@ final List<(double, IconData)> fcBatteryIcons = [
 class BatteryIconPercentage extends BatteryIcon {
   BatteryIconPercentage({
     super.key,
-    required super.level,
+    required super.data,
     super.iconSize,
   });
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return data.conStatus == ConStatus.noCon
+        ? Tooltip(
+          message: 'Offline',
+          child: Icon(
+            Icons.battery_unknown_rounded,
+            size: iconSize ?? Theme.of(context).iconTheme.size,
+            color: Theme.of(context).disabledColor,
+          ),
+        )
+        : SizedBox(
       width: 40,
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -71,7 +91,7 @@ class BatteryIconPercentage extends BatteryIcon {
             color: _getBatteryColor(),
           ),
           Text(
-            '${(level * 100).round()}%',
+            '${(data.batteryLevel * 100).round()}%',
             style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold),
           ),
         ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gs_app/models/device_data.dart';
 import 'package:flutter_gs_app/notifiers/ground_station_provider.dart';
 import 'package:flutter_gs_app/views/common/battery_icon.dart';
 import 'package:flutter_gs_app/views/common/color_picker.dart';
@@ -17,6 +18,8 @@ class GroundStationConfig extends ConsumerWidget {
     final allGSs = ref.watch(groundStationListProvider);
 
     final theme = Theme.of(context);
+
+    final gsConStatus = gs?.data.conStatus ?? ConStatus.noCon;
 
     return Padding(
       padding: const EdgeInsets.all(8),
@@ -39,10 +42,14 @@ class GroundStationConfig extends ConsumerWidget {
                         value: selectedId,
                         items:
                             allGSs.map((gs) {
+                              final gsConStatus = gs.data.conStatus;
                               return DropdownMenuItem<int>(
-                                value: gs.id,
+                                value: gs.data.id,
                                 child: Tooltip(
-                                  message: gs.isConnected ? '' : 'Connect',
+                                  message:
+                                      gsConStatus == ConStatus.noCon
+                                          ? 'Connect'
+                                          : '',
                                   child: Row(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
@@ -52,15 +59,17 @@ class GroundStationConfig extends ConsumerWidget {
                                       Row(
                                         children: [
                                           ColorPickerButton(
-                                            color: gs.color ?? Colors.black,
+                                            color:
+                                                gs.data.color ?? Colors.black,
                                             onPickNewColor: (Color? c) => {},
                                           ),
                                           SizedBox(width: 10),
                                           Text(
-                                            gs.name,
+                                            gs.data.name,
                                             style: TextStyle(
                                               color:
-                                                  gs.isConnected
+                                                  gs.data.conStatus !=
+                                                          ConStatus.noCon
                                                       ? null
                                                       : theme
                                                           .colorScheme
@@ -76,36 +85,26 @@ class GroundStationConfig extends ConsumerWidget {
                                         children: [
                                           Tooltip(
                                             message:
-                                                !gs.isConnected
+                                                gsConStatus == ConStatus.noCon
                                                     ? ''
-                                                    : gs.conViaUSB
+                                                    : gsConStatus ==
+                                                        ConStatus.conUSB
                                                     ? 'Connected via USB'
                                                     : 'Connected via Bluetooth',
                                             child: Icon(
-                                              gs.conViaUSB
+                                              gsConStatus == ConStatus.conUSB
                                                   ? Icons.usb
                                                   : Icons
                                                       .bluetooth_audio_rounded,
                                               color:
-                                                  gs.isConnected
+                                                  gsConStatus != ConStatus.noCon
                                                       ? theme
                                                           .colorScheme
                                                           .primary
                                                       : theme.disabledColor,
                                             ),
                                           ),
-                                          gs.isConnected
-                                              ? BatteryIcon(
-                                                level: gs.batteryLevel,
-                                                isFC: false,
-                                              )
-                                              : Tooltip(
-                                                message: '',
-                                                child: Icon(
-                                                  Icons.battery_0_bar,
-                                                  color: theme.disabledColor,
-                                                ),
-                                              ),
+                                          BatteryIcon(data: gs.data),
                                         ],
                                       ),
                                     ],
@@ -151,12 +150,13 @@ class GroundStationConfig extends ConsumerWidget {
                             SizedBox(width: 8),
                             Tooltip(
                               message:
-                                  gs != null && gs.conViaUSB
+                                  gs != null && gsConStatus == ConStatus.conUSB
                                       ? ''
                                       : 'Connect via USB to upload firmware.',
                               child: ElevatedButton(
                                 onPressed:
-                                    gs != null && gs.conViaUSB
+                                    gs != null &&
+                                            gsConStatus == ConStatus.conUSB
                                         ? () {
                                           ScaffoldMessenger.of(
                                             context,

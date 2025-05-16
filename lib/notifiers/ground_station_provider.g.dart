@@ -7,7 +7,7 @@ part of 'ground_station_provider.dart';
 // **************************************************************************
 
 String _$activeGroundStationHash() =>
-    r'75e4b74f8ba01542608e83171df082484cfaf82f';
+    r'9d1d34901a410abf16ad8c7cd3c0365240de9e80';
 
 /// See also [activeGroundStation].
 @ProviderFor(activeGroundStation)
@@ -26,7 +26,7 @@ final activeGroundStationProvider =
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef ActiveGroundStationRef = AutoDisposeProviderRef<GroundStationModel?>;
-String _$groundStationListHash() => r'513973dca07cf88989e4b564057ff2e45fbf68b3';
+String _$groundStationListHash() => r'd52c1b06227a3a5ca0079286730d788e56d724d5';
 
 /// Manages the list of all available ground stations.
 ///
@@ -46,7 +46,7 @@ final groundStationListProvider =
 
 typedef _$GroundStationList = Notifier<List<GroundStationModel>>;
 String _$activeGroundStationIdHash() =>
-    r'ac6097a78a1084627d8f7c31397a2f452c359d59';
+    r'10918a18d25449af3acb77bea5e4931f9d5b7016';
 
 /// See also [ActiveGroundStationId].
 @ProviderFor(ActiveGroundStationId)
