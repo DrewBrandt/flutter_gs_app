@@ -22,7 +22,7 @@ class GroundStationConfig extends ConsumerWidget {
     final gsConStatus = gs?.data.conStatus ?? ConStatus.noCon;
 
     return Padding(
-      padding: const EdgeInsets.all(8),
+      padding: const EdgeInsets.all(25),
       child: Align(
         alignment: Alignment.topCenter,
         child: ConstrainedBox(
@@ -197,8 +197,7 @@ class GroundStationConfig extends ConsumerWidget {
                   ),
                 ],
               ),
-              ConstrainedBox(
-                constraints: BoxConstraints(maxHeight: 400),
+              Expanded(
                 child:
                     gs != null && gs.knownFCs.isNotEmpty
                         ? FlightComputerListScrollView(fcList: gs.knownFCs)

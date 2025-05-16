@@ -33,7 +33,7 @@ class PreFlightPage extends StatelessWidget {
                 gripColor: Theme.of(context).colorScheme.secondary,
                 gripColorActive: Theme.of(context).colorScheme.primary,
                 controller: SplitViewController(weights: [0.5, 0.5]),
-                children: [GroundStationConfig(), DeviceLogDemo()],
+                children: [GroundStationConfig(), Container(height: double.infinity, color: Theme.of(context).scaffoldBackgroundColor, child: DeviceLogDemo())],
               ),
             ),
           ),
