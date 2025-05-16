@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gs_app/screens/body/flight_page.dart';
-import 'package:flutter_gs_app/screens/body/post_flight_page.dart';
-import 'package:flutter_gs_app/screens/body/pre_flight/pre_flight_page.dart';
-import 'package:flutter_gs_app/screens/header_bar.dart';
+import 'package:flutter_gs_app/views/body/flight_page.dart';
+import 'package:flutter_gs_app/views/body/post_flight_page.dart';
+import 'package:flutter_gs_app/views/body/pre_flight/pre_flight_page.dart';
+import 'package:flutter_gs_app/views/header_bar.dart';
 
 class RocketHomePage extends StatefulWidget {
   final VoidCallback onToggleTheme;

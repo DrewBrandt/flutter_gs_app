@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$GroundStationModel {
 
- double get RSSI; int get id; String get name; FlightComputerModel? get connectedFC; double get batteryLevel;
+ Map<FlightComputerModel, Relationship> get knownFCs; DeviceData get data;
 /// Create a copy of GroundStationModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -26,16 +26,16 @@ $GroundStationModelCopyWith<GroundStationModel> get copyWith => _$GroundStationM
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is GroundStationModel&&(identical(other.RSSI, RSSI) || other.RSSI == RSSI)&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.connectedFC, connectedFC) || other.connectedFC == connectedFC)&&(identical(other.batteryLevel, batteryLevel) || other.batteryLevel == batteryLevel));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is GroundStationModel&&const DeepCollectionEquality().equals(other.knownFCs, knownFCs)&&(identical(other.data, data) || other.data == data));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,RSSI,id,name,connectedFC,batteryLevel);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(knownFCs),data);
 
 @override
 String toString() {
-  return 'GroundStationModel(RSSI: $RSSI, id: $id, name: $name, connectedFC: $connectedFC, batteryLevel: $batteryLevel)';
+  return 'GroundStationModel(knownFCs: $knownFCs, data: $data)';
 }
 
 
@@ -46,11 +46,11 @@ abstract mixin class $GroundStationModelCopyWith<$Res>  {
   factory $GroundStationModelCopyWith(GroundStationModel value, $Res Function(GroundStationModel) _then) = _$GroundStationModelCopyWithImpl;
 @useResult
 $Res call({
- double RSSI, int id, String name, FlightComputerModel? connectedFC, double batteryLevel
+ Map<FlightComputerModel, Relationship> knownFCs, DeviceData data
 });
 
 
-$FlightComputerModelCopyWith<$Res>? get connectedFC;
+$DeviceDataCopyWith<$Res> get data;
 
 }
 /// @nodoc
@@ -63,27 +63,21 @@ class _$GroundStationModelCopyWithImpl<$Res>
 
 /// Create a copy of GroundStationModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? RSSI = null,Object? id = null,Object? name = null,Object? connectedFC = freezed,Object? batteryLevel = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? knownFCs = null,Object? data = null,}) {
   return _then(_self.copyWith(
-RSSI: null == RSSI ? _self.RSSI : RSSI // ignore: cast_nullable_to_non_nullable
-as double,id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String,connectedFC: freezed == connectedFC ? _self.connectedFC : connectedFC // ignore: cast_nullable_to_non_nullable
-as FlightComputerModel?,batteryLevel: null == batteryLevel ? _self.batteryLevel : batteryLevel // ignore: cast_nullable_to_non_nullable
-as double,
+knownFCs: null == knownFCs ? _self.knownFCs : knownFCs // ignore: cast_nullable_to_non_nullable
+as Map<FlightComputerModel, Relationship>,data: null == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
+as DeviceData,
   ));
 }
 /// Create a copy of GroundStationModel
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$FlightComputerModelCopyWith<$Res>? get connectedFC {
-    if (_self.connectedFC == null) {
-    return null;
-  }
-
-  return $FlightComputerModelCopyWith<$Res>(_self.connectedFC!, (value) {
-    return _then(_self.copyWith(connectedFC: value));
+$DeviceDataCopyWith<$Res> get data {
+  
+  return $DeviceDataCopyWith<$Res>(_self.data, (value) {
+    return _then(_self.copyWith(data: value));
   });
 }
 }
@@ -93,14 +87,17 @@ $FlightComputerModelCopyWith<$Res>? get connectedFC {
 
 
 class _GroundStationModel implements GroundStationModel {
-  const _GroundStationModel({required this.RSSI, required this.id, required this.name, required this.connectedFC, required this.batteryLevel});
+  const _GroundStationModel({required final  Map<FlightComputerModel, Relationship> knownFCs, required this.data}): _knownFCs = knownFCs;
   
 
-@override final  double RSSI;
-@override final  int id;
-@override final  String name;
-@override final  FlightComputerModel? connectedFC;
-@override final  double batteryLevel;
+ final  Map<FlightComputerModel, Relationship> _knownFCs;
+@override Map<FlightComputerModel, Relationship> get knownFCs {
+  if (_knownFCs is EqualUnmodifiableMapView) return _knownFCs;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableMapView(_knownFCs);
+}
+
+@override final  DeviceData data;
 
 /// Create a copy of GroundStationModel
 /// with the given fields replaced by the non-null parameter values.
@@ -112,16 +109,16 @@ _$GroundStationModelCopyWith<_GroundStationModel> get copyWith => __$GroundStati
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _GroundStationModel&&(identical(other.RSSI, RSSI) || other.RSSI == RSSI)&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.connectedFC, connectedFC) || other.connectedFC == connectedFC)&&(identical(other.batteryLevel, batteryLevel) || other.batteryLevel == batteryLevel));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _GroundStationModel&&const DeepCollectionEquality().equals(other._knownFCs, _knownFCs)&&(identical(other.data, data) || other.data == data));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,RSSI,id,name,connectedFC,batteryLevel);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_knownFCs),data);
 
 @override
 String toString() {
-  return 'GroundStationModel(RSSI: $RSSI, id: $id, name: $name, connectedFC: $connectedFC, batteryLevel: $batteryLevel)';
+  return 'GroundStationModel(knownFCs: $knownFCs, data: $data)';
 }
 
 
@@ -132,11 +129,11 @@ abstract mixin class _$GroundStationModelCopyWith<$Res> implements $GroundStatio
   factory _$GroundStationModelCopyWith(_GroundStationModel value, $Res Function(_GroundStationModel) _then) = __$GroundStationModelCopyWithImpl;
 @override @useResult
 $Res call({
- double RSSI, int id, String name, FlightComputerModel? connectedFC, double batteryLevel
+ Map<FlightComputerModel, Relationship> knownFCs, DeviceData data
 });
 
 
-@override $FlightComputerModelCopyWith<$Res>? get connectedFC;
+@override $DeviceDataCopyWith<$Res> get data;
 
 }
 /// @nodoc
@@ -149,14 +146,11 @@ class __$GroundStationModelCopyWithImpl<$Res>
 
 /// Create a copy of GroundStationModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? RSSI = null,Object? id = null,Object? name = null,Object? connectedFC = freezed,Object? batteryLevel = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? knownFCs = null,Object? data = null,}) {
   return _then(_GroundStationModel(
-RSSI: null == RSSI ? _self.RSSI : RSSI // ignore: cast_nullable_to_non_nullable
-as double,id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String,connectedFC: freezed == connectedFC ? _self.connectedFC : connectedFC // ignore: cast_nullable_to_non_nullable
-as FlightComputerModel?,batteryLevel: null == batteryLevel ? _self.batteryLevel : batteryLevel // ignore: cast_nullable_to_non_nullable
-as double,
+knownFCs: null == knownFCs ? _self._knownFCs : knownFCs // ignore: cast_nullable_to_non_nullable
+as Map<FlightComputerModel, Relationship>,data: null == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
+as DeviceData,
   ));
 }
 
@@ -164,13 +158,10 @@ as double,
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$FlightComputerModelCopyWith<$Res>? get connectedFC {
-    if (_self.connectedFC == null) {
-    return null;
-  }
-
-  return $FlightComputerModelCopyWith<$Res>(_self.connectedFC!, (value) {
-    return _then(_self.copyWith(connectedFC: value));
+$DeviceDataCopyWith<$Res> get data {
+  
+  return $DeviceDataCopyWith<$Res>(_self.data, (value) {
+    return _then(_self.copyWith(data: value));
   });
 }
 }

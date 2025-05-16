@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gs_app/views/common/title_text.dart';
 
 class FlightPage extends StatelessWidget {
   const FlightPage({super.key});
@@ -16,13 +17,13 @@ class FlightPage extends StatelessWidget {
             flex: 2,
             child: Column(
               children: [
-                _sectionTitle('Rocket View', theme),
+                TitleText(title: 'Rocket View', theme: theme),
                 Expanded(
                   child: Container(
                     decoration: BoxDecoration(
                       border: Border.all(color: theme.dividerColor),
                       borderRadius: BorderRadius.circular(12),
-                      color: theme.colorScheme.surface,
+                      color: theme.colorScheme.surfaceContainerLow,
                     ),
                     child: const Center(child: Text('🚀 Placeholder SVG')),
                   ),
@@ -48,15 +49,12 @@ class FlightPage extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 24),
-                _sectionTitle('Flight Data', theme),
+                TitleText(title: 'Flight Data', theme: theme),
                 DefaultTabController(
                   length: 2,
                   child: Column(
                     children: [
                       TabBar(
-                        labelColor: theme.colorScheme.primary,
-                        unselectedLabelColor: Colors.black54,
-                        indicatorColor: theme.colorScheme.primary,
                         tabs: const [
                           Tab(text: 'Map'),
                           Tab(text: 'Altitude/Speed'),
@@ -68,14 +66,14 @@ class FlightPage extends StatelessWidget {
                           children: [
                             // Fake map
                             Container(
-                              color: theme.colorScheme.surface,
+                              color: theme.colorScheme.surfaceContainerLow,
                               child: const Center(
                                 child: Text('🗺️ Fake map with path trace'),
                               ),
                             ),
                             // Fake Alt graph
                             Container(
-                              color: theme.colorScheme.surface,
+                              color: theme.colorScheme.surfaceContainerLow,
                               child: const Center(
                                 child: Text('📈 Altitude/Speed vs Time Graph'),
                               ),
@@ -98,9 +96,8 @@ class FlightPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _sectionTitle('Extra Telemetry', theme),
+                TitleText(title: 'Extra Telemetry', theme: theme),
                 Card(
-                  color: theme.colorScheme.surface,
                   child: Padding(
                     padding: const EdgeInsets.all(12),
                     child: Column(
@@ -124,25 +121,14 @@ class FlightPage extends StatelessWidget {
     );
   }
 
-  Widget _sectionTitle(String title, ThemeData theme) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 12),
-      child: Text(
-        title,
-        style: theme.textTheme.titleLarge,
-      ),
-    );
-  }
-
   Widget _infoCard(String label, String value, IconData icon, ThemeData theme) {
     return Expanded(
       child: Card(
-        color: theme.colorScheme.surface,
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Column(
             children: [
-              Icon(icon, size: 30, color: theme.colorScheme.primary),
+              Icon(icon),
               const SizedBox(height: 8),
               Text(
                 value,
@@ -160,6 +146,8 @@ class FlightPage extends StatelessWidget {
     );
   }
 }
+
+
 
 class _TelemetryRow extends StatelessWidget {
   final String label;
