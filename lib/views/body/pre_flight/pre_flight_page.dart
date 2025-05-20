@@ -49,7 +49,7 @@ class PreFlightPage extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 100,),
-              Center(child: Text('${MediaQuery.of(context).size.width}x${MediaQuery.of(context).size.height}'),),
+              Center(child: Text('${MediaQuery.of(context).size.width}x${MediaQuery.of(context).size.height} | ${MediaQuery.of(context).devicePixelRatio}'),),
               // LogicEditor(),
               const Spacer(),
               Center(
