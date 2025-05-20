@@ -70,7 +70,7 @@ class DeviceLogView extends StatelessWidget {
             child: ListView.builder(
               itemCount: logs.length,
 
-              reverse: true,
+              reverse: false,
               itemBuilder: (context, index) {
                 final log = logs[logs.length - index - 1];
                 return Container(
@@ -123,7 +123,7 @@ class DeviceLogDemo extends StatefulWidget {
 
 class _DeviceLogDemoState extends State<DeviceLogDemo> {
   final DeviceData device1 =
-      knownFCs.keys.firstWhere((fc) => fc.data.id == 101).data;
+      knownFCs.keys.firstWhere((fc) => fc.data.id == 102).data;
   final DeviceData device2 =
       knownFCs.keys.firstWhere((fc) => fc.data.id == 103).data;
 
@@ -149,26 +149,27 @@ class _DeviceLogDemoState extends State<DeviceLogDemo> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Row(
+        Wrap(
+          runSpacing: 10,
           children: [
             ElevatedButton(
               onPressed: () => _logTestMessage(device1),
-              child: const Text('Log Falcon'),
+              child: const Text('Bravo'),
             ),
             const SizedBox(width: 8),
             ElevatedButton(
               onPressed: () => _logTestMessage(device2),
-              child: const Text('Log Charlie'),
+              child: const Text('Charlie'),
             ),
             const SizedBox(width: 8),
             ElevatedButton(
               onPressed: () => _controller.setFilter({device1}),
-              child: const Text('Filter Falcon'),
+              child: const Text('Bravo Only'),
             ),
             const SizedBox(width: 8),
             ElevatedButton(
               onPressed: () => _controller.clearFilter(),
-              child: const Text('Clear Filter'),
+              child: const Text('All'),
             ),
           ],
         ),

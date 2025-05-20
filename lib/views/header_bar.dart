@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gs_app/notifiers/theme_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class HeaderBar extends ConsumerWidget {
-  final VoidCallback onToggleTheme;
 
-  const HeaderBar({super.key, required this.onToggleTheme});
+  const HeaderBar({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Container(
-      height: 64,
+      height: getAdjustedSizeFromContext(context, baseSize: 50, maxSize: 70),
       padding: const EdgeInsets.symmetric(horizontal: 16),
       color: isDark ? Theme.of(context).colorScheme.onPrimary: Theme.of(context).colorScheme.primary,
       child: Row(
@@ -37,7 +37,7 @@ class HeaderBar extends ConsumerWidget {
                   color: Colors.white,
                 ),
                 tooltip: 'Toggle Theme',
-                onPressed: onToggleTheme,
+                onPressed: ref.read(themeProvider.notifier).toggleTheme,
                 style: ButtonStyle(backgroundColor: WidgetStatePropertyAll(Theme.of(context).colorScheme.onPrimaryContainer.withAlpha(50))),
               ),
               const SizedBox(width: 20),

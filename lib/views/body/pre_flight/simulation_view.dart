@@ -16,7 +16,7 @@ class SimulationView extends ConsumerWidget {
             children: [
               TabBar(tabs: const [Tab(text: 'Configure'), Tab(text: 'Result')]),
               SizedBox(
-                height: 500,
+                height: 400,
                 child: TabBarView(
                   children: [
                     Container(

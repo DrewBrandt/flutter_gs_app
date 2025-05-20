@@ -20,12 +20,17 @@ class ConnIcon extends StatelessWidget {
           color: Theme.of(context).disabledColor,
         );
         break;
-      case ConStatus.advert:
+      case ConStatus.advert when data.type == DeviceType.gs:
         message = 'Available';
         icon = Icon(
           Icons.bluetooth_audio_rounded,
           color: Theme.of(context).colorScheme.primaryFixed,
         );
+        break;
+      case ConStatus.advert:
+      case ConStatus.conLoRa:
+        message = '${data.rssi} dbm';
+        icon = _buildRSSIIcon(context);
         break;
       case ConStatus.conUSB:
         message = 'Connected via USB';
@@ -34,10 +39,6 @@ class ConnIcon extends StatelessWidget {
       case ConStatus.conBT:
         message = 'Connected Via BT';
         icon = Icon(Icons.bluetooth_audio_rounded);
-        break;
-      case ConStatus.conLoRa:
-        message = '${data.rssi} dbm';
-        icon = _buildRSSIIcon(context);
         break;
     }
     return Tooltip(message: message, child: icon);

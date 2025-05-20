@@ -1,40 +1,56 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gs_app/notifiers/theme_provider.dart';
 import 'package:flutter_gs_app/views/main_screen.dart';
 import 'package:flutter_gs_app/views/theme.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
-  runApp(ProviderScope(child: const RocketApp()));
+  runApp(const ProviderScope(child: RocketApp()));
 }
 
-class RocketApp extends StatefulWidget {
+class RocketApp extends ConsumerWidget {
   const RocketApp({super.key});
 
   @override
-  State<RocketApp> createState() => _RocketAppState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final themeMode = ref.watch(themeProvider);
+    final screenWidth = MediaQuery.of(context).size.width;
+    final iconSize = getAdjustedSize(
+      screenWidth,
+      baseSize: minIconSize,
+      maxSize: maxIconSize,
+    );
+    final titleSize = getAdjustedSize(
+      screenWidth,
+      baseSize: 20,
+      maxSize: 28,
+      ratioMultiplier: 1.2
+    );
 
-class _RocketAppState extends State<RocketApp> {
-  ThemeMode _themeMode = ThemeMode.dark;
+    final light = lightTheme.copyWith(
+      iconTheme: lightTheme.iconTheme.copyWith(size: iconSize),
+      textTheme: lightTheme.textTheme.copyWith(
+        titleLarge: lightTheme.textTheme.titleLarge?.copyWith(
+          fontSize: titleSize,
+        ),
+      ),
+    );
+    final dark = darkTheme.copyWith(
+      iconTheme: darkTheme.iconTheme.copyWith(size: iconSize),
+      textTheme: darkTheme.textTheme.copyWith(
+        titleLarge: darkTheme.textTheme.titleLarge?.copyWith(
+          fontSize: titleSize,
+        ),
+      ),
+    );
 
-  void toggleTheme() {
-    setState(() {
-      _themeMode =
-          _themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    print(darkTheme.colorScheme.toString());
-    print(lightTheme.colorScheme.toString());
     return MaterialApp(
       title: 'Rocket Ground Station',
       debugShowCheckedModeBanner: false,
-      theme: lightTheme,
-      darkTheme: darkTheme,
-      themeMode: _themeMode,
-      home: RocketHomePage(onToggleTheme: toggleTheme),
+      themeMode: themeMode,
+      theme: light,
+      darkTheme: dark,
+      home: RocketHomePage(),
     );
   }
 }

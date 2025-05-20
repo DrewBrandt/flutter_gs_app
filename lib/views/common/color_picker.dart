@@ -43,7 +43,6 @@ class ColorPickerButton extends StatelessWidget {
           },
           style: ButtonStyle(backgroundColor: WidgetStatePropertyAll(Colors.transparent)), // necessary override
           padding: EdgeInsets.all(0),
-          iconSize: 30,
         );
       },
       controller: _controller,

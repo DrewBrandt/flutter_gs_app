@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gs_app/notifiers/theme_provider.dart';
 
 final baseSeed = const Color(0xFF15139E);
 
@@ -17,7 +18,7 @@ final schemeDark = ColorScheme.fromSeed(
 );
 
 final lightTheme = ThemeData.from(colorScheme: schemeLight).copyWith(
-  iconTheme: IconThemeData(size: 30, color: schemeLight.primary),
+  iconTheme: IconThemeData(size: minIconSize, color: schemeLight.primary),
   iconButtonTheme: IconButtonThemeData(
     style: ButtonStyle(
       backgroundColor: WidgetStatePropertyAll(schemeLight.surfaceContainer),
@@ -26,7 +27,7 @@ final lightTheme = ThemeData.from(colorScheme: schemeLight).copyWith(
 );
 
 final darkTheme = ThemeData.from(colorScheme: schemeDark).copyWith(
-  iconTheme: IconThemeData(size: 30, color: schemeDark.primary),
+  iconTheme: IconThemeData(size: minIconSize, color: schemeDark.primary),
   iconButtonTheme: IconButtonThemeData(
     style: ButtonStyle(
       backgroundColor: WidgetStatePropertyAll(schemeDark.surfaceContainer),

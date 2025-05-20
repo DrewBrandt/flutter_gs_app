@@ -66,7 +66,7 @@ class _FlightComputerListScrollViewState
                     child: Stack(
                       children: [
                         Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(4.0),
                           child: Card(
                             elevation: 0,
                             child: _buildFlightComputerTile(
@@ -84,7 +84,7 @@ class _FlightComputerListScrollViewState
                               context,
                             ).colorScheme.surfaceContainerLowest.withAlpha(130),
                             child: Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding: const EdgeInsets.all(4.0),
                               child: Card(
                                 elevation: 0,
                                 color: Colors.transparent,
