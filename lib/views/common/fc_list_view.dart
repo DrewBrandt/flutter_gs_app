@@ -144,6 +144,7 @@ class _FlightComputerListScrollViewState
                 Icons.delete_outline_rounded,
                 color: Theme.of(context).colorScheme.primary,
               ),
+              style: Theme.of(context).iconButtonTheme.style,
               onPressed: () => widget.onDelete?.call(fc),
             ),
           ),

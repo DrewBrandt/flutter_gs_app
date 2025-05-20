@@ -3,6 +3,7 @@ import 'package:flutter_gs_app/models/device_data.dart';
 import 'package:flutter_gs_app/notifiers/ground_station_provider.dart';
 import 'package:flutter_gs_app/views/common/battery_icon.dart';
 import 'package:flutter_gs_app/views/common/color_picker.dart';
+import 'package:flutter_gs_app/views/common/conn_icon.dart';
 import 'package:flutter_gs_app/views/common/decorated_dropdown.dart';
 import 'package:flutter_gs_app/views/common/fc_list_view.dart';
 import 'package:flutter_gs_app/views/common/title_text.dart';
@@ -32,24 +33,28 @@ class GroundStationConfig extends ConsumerWidget {
               TitleText(title: 'Ground Stations', theme: theme),
               SizedBox(height: 20),
               SizedBox(
-                height: 60,
+                height: 65,
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     IntrinsicWidth(
                       child: LabeledDropdown<int>(
+                        
                         label: 'Select Ground Station',
                         value: selectedId,
                         items:
                             allGSs.map((gs) {
                               final gsConStatus = gs.data.conStatus;
                               return DropdownMenuItem<int>(
+
                                 value: gs.data.id,
                                 child: Tooltip(
                                   message:
                                       gsConStatus == ConStatus.noCon
-                                          ? 'Connect'
-                                          : '',
+                                          ? 'Offline'
+                                          : gsConStatus == ConStatus.advert
+                                          ? 'Connect...'
+                                          : 'Connected',
                                   child: Row(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
@@ -62,18 +67,22 @@ class GroundStationConfig extends ConsumerWidget {
                                             color:
                                                 gs.data.color ?? Colors.black,
                                             onPickNewColor: (Color? c) => {},
+
                                           ),
                                           SizedBox(width: 10),
                                           Text(
                                             gs.data.name,
                                             style: TextStyle(
                                               color:
-                                                  gs.data.conStatus !=
-                                                          ConStatus.noCon
-                                                      ? null
-                                                      : theme
+                                                  gsConStatus ==
+                                                          ConStatus.advert
+                                                      ? theme
                                                           .colorScheme
-                                                          .primaryFixed,
+                                                          .primaryFixed
+                                                      : gsConStatus ==
+                                                          ConStatus.noCon
+                                                      ? theme.disabledColor
+                                                      : theme.colorScheme.primary,
                                             ),
                                           ),
                                         ],
@@ -83,27 +92,7 @@ class GroundStationConfig extends ConsumerWidget {
                                         mainAxisAlignment:
                                             MainAxisAlignment.end,
                                         children: [
-                                          Tooltip(
-                                            message:
-                                                gsConStatus == ConStatus.noCon
-                                                    ? ''
-                                                    : gsConStatus ==
-                                                        ConStatus.conUSB
-                                                    ? 'Connected via USB'
-                                                    : 'Connected via Bluetooth',
-                                            child: Icon(
-                                              gsConStatus == ConStatus.conUSB
-                                                  ? Icons.usb
-                                                  : Icons
-                                                      .bluetooth_audio_rounded,
-                                              color:
-                                                  gsConStatus != ConStatus.noCon
-                                                      ? theme
-                                                          .colorScheme
-                                                          .primary
-                                                      : theme.disabledColor,
-                                            ),
-                                          ),
+                                          ConnIcon(data: gs.data),
                                           BatteryIcon(data: gs.data),
                                         ],
                                       ),

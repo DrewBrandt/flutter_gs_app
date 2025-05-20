@@ -191,6 +191,19 @@ class GroundStationList extends _$GroundStationList {
         ),
         knownFCs: {},
       ),
+      GroundStationModel(
+        data: DeviceData(
+          id: 3,
+          rssi: -60,
+          name: 'Delta Enclave GS',
+          batteryLevel: 0.1,
+          firmwareVer: '0.0.1',
+          color: colorOptions[4],
+          type: DeviceType.gs,
+          conStatus: ConStatus.advert,
+        ),
+        knownFCs: {},
+      ),
     ];
   }
 

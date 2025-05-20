@@ -33,11 +33,12 @@ class HeaderBar extends ConsumerWidget {
             children: [
               IconButton(
                 icon: Icon(
-                  isDark ? Icons.wb_sunny_outlined : Icons.nightlight_round,
+                  isDark ? Icons.light_mode_outlined : Icons.nightlight_round,
                   color: Colors.white,
                 ),
                 tooltip: 'Toggle Theme',
                 onPressed: onToggleTheme,
+                style: ButtonStyle(backgroundColor: WidgetStatePropertyAll(Theme.of(context).colorScheme.onPrimaryContainer.withAlpha(50))),
               ),
               const SizedBox(width: 20),
               _HeaderStat(

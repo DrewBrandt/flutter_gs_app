@@ -18,5 +18,7 @@ sealed class FlightComputerModel with _$FlightComputerModel {
     required double temperature,
     required bool hasGPSLock,
     required String flightName,
+
+    //config
   }) = _FlightComputerModel;
 }

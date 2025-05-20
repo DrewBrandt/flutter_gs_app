@@ -89,6 +89,7 @@ class MenuButton extends StatelessWidget {
                 ? Theme.of(context).colorScheme.primary
                 : Colors.grey.shade600,
         onPressed: onPressed,
+        style: ButtonStyle(backgroundColor: WidgetStatePropertyAll(Colors.transparent)),
       ),
     );
   }

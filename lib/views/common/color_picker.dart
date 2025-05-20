@@ -36,11 +36,14 @@ class ColorPickerButton extends StatelessWidget {
           icon: Tooltip(
             message: 'Change Color',
             padding: EdgeInsets.zero,
-            child: Icon(Icons.circle, color: color),
+            child: Icon(Icons.adjust_rounded, color: color),
           ),
           onPressed: () {
             controller.isOpen ? controller.close() : controller.open();
           },
+          style: ButtonStyle(backgroundColor: WidgetStatePropertyAll(Colors.transparent)), // necessary override
+          padding: EdgeInsets.all(0),
+          iconSize: 30,
         );
       },
       controller: _controller,

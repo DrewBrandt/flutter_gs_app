@@ -26,7 +26,7 @@ final activeGroundStationProvider =
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef ActiveGroundStationRef = AutoDisposeProviderRef<GroundStationModel?>;
-String _$groundStationListHash() => r'f50c36d57fc1e306b35ba1ed112fa6c5481e01a7';
+String _$groundStationListHash() => r'04eb7754b01a6e4cffe7524185fa72ab1d62bc25';
 
 /// Manages the list of all available ground stations.
 ///

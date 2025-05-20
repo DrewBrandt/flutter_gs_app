@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gs_app/views/body/pre_flight/config_view_test.dart';
 import 'package:split_view/split_view.dart';
 
 import 'package:flutter_gs_app/views/body/pre_flight/log_viewer.dart';
@@ -48,7 +49,8 @@ class PreFlightPage extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 100,),
-              Center(child: Text('We don''t do that here'),),
+              Center(child: Text('${MediaQuery.of(context).size.width}x${MediaQuery.of(context).size.height}'),),
+              // LogicEditor(),
               const Spacer(),
               Center(
                 child: TitleText(
