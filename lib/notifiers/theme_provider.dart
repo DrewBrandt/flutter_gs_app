@@ -17,7 +17,7 @@ double getAdjustedSize(
   required double baseSize,
   required double maxSize,
   double baseWidth = 1280,
-  double maxWidth = 2560,
+  double maxWidth = 2561,
   double ratioMultiplier = 1.0, // >1 = slower curve, <1 = faster
 }) {
   if (screenWidth <= baseWidth) return baseSize;

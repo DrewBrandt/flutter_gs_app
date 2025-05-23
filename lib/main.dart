@@ -20,37 +20,31 @@ class RocketApp extends ConsumerWidget {
       baseSize: minIconSize,
       maxSize: maxIconSize,
     );
-    final titleSize = getAdjustedSize(
-      screenWidth,
-      baseSize: 20,
-      maxSize: 28,
-      ratioMultiplier: 1.2
-    );
 
-    final light = lightTheme.copyWith(
-      iconTheme: lightTheme.iconTheme.copyWith(size: iconSize),
-      textTheme: lightTheme.textTheme.copyWith(
-        titleLarge: lightTheme.textTheme.titleLarge?.copyWith(
-          fontSize: titleSize,
-        ),
-      ),
-    );
-    final dark = darkTheme.copyWith(
-      iconTheme: darkTheme.iconTheme.copyWith(size: iconSize),
-      textTheme: darkTheme.textTheme.copyWith(
-        titleLarge: darkTheme.textTheme.titleLarge?.copyWith(
-          fontSize: titleSize,
-        ),
-      ),
-    );
+    final fontSizeDelta = getAdjustedSize(screenWidth, baseSize: 0.8, maxSize: 1.15);
 
     return MaterialApp(
       title: 'Rocket Ground Station',
       debugShowCheckedModeBanner: false,
       themeMode: themeMode,
-      theme: light,
-      darkTheme: dark,
-      home: RocketHomePage(),
+      theme: lightTheme.copyWith(
+        iconTheme: lightTheme.iconTheme.copyWith(size: iconSize),
+      ),
+      darkTheme: darkTheme.copyWith(
+        iconTheme: darkTheme.iconTheme.copyWith(size: iconSize),
+      ),
+      home: Builder(
+        builder: (context) {
+          return Theme(
+            data: Theme.of(context).copyWith(
+              textTheme: Theme.of(
+                context,
+              ).textTheme.apply(fontSizeFactor: fontSizeDelta, fontSizeDelta: 0),
+            ),
+            child: RocketHomePage(),
+          );
+        }
+      ),
     );
   }
 }

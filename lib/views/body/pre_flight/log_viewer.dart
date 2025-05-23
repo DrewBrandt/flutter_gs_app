@@ -67,45 +67,52 @@ class DeviceLogView extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
           ),
           child: SelectionArea(
-            child: ListView.builder(
-              itemCount: logs.length,
+            child:
+                logs.isEmpty
+                    ? Center(child: Text('Nothing to see here.'))
+                    : ListView.builder(
+                      itemCount: logs.length,
 
-              reverse: false,
-              itemBuilder: (context, index) {
-                final log = logs[logs.length - index - 1];
-                return Container(
-                  color: log.device.color,
-                  padding: EdgeInsets.symmetric(horizontal: 8),
-                  margin: const EdgeInsets.symmetric(vertical: 1).copyWith(right: 12),
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 8,
-                      vertical: 6,
-                    ),
-                    decoration: BoxDecoration(
-                      color: Theme.of(
-                        context,
-                      ).scaffoldBackgroundColor.withAlpha(180),
-                    ),
-                    child: Text.rich(
-                      TextSpan(
-                        children: [
-                          TextSpan(
-                            text:
-                                '${log.timestamp.toIso8601String().split("T").last.split(".").first} | ',
+                      reverse: false,
+                      itemBuilder: (context, index) {
+                        final log = logs[logs.length - index - 1];
+                        return Container(
+                          color: log.device.color,
+                          padding: EdgeInsets.symmetric(horizontal: 8),
+                          margin: const EdgeInsets.symmetric(
+                            vertical: 1,
+                          ).copyWith(right: 12),
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 8,
+                              vertical: 6,
+                            ),
+                            decoration: BoxDecoration(
+                              color: Theme.of(
+                                context,
+                              ).scaffoldBackgroundColor.withAlpha(180),
+                            ),
+                            child: Text.rich(
+                              TextSpan(
+                                children: [
+                                  TextSpan(
+                                    text:
+                                        '${log.timestamp.toIso8601String().split("T").last.split(".").first} | ',
+                                  ),
+                                  TextSpan(
+                                    text: log.device.name,
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  TextSpan(text: ': ${log.message}'),
+                                ],
+                              ),
+                            ),
                           ),
-                          TextSpan(
-                            text: log.device.name,
-                            style: const TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          TextSpan(text: ': ${log.message}'),
-                        ],
-                      ),
+                        );
+                      },
                     ),
-                  ),
-                );
-              },
-            ),
           ),
         );
       },

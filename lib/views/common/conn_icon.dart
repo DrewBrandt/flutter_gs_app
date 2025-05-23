@@ -41,7 +41,7 @@ class ConnIcon extends StatelessWidget {
         icon = Icon(Icons.bluetooth_audio_rounded);
         break;
     }
-    return Tooltip(message: message, child: icon);
+    return Tooltip(message: message, child: IconTheme(data: Theme.of(context).iconTheme,child: icon));
   }
 
   IconData? _getSignalStrengthIcon() {

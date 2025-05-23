@@ -27,10 +27,23 @@ class _PreFlightPageState extends State<PreFlightPage> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final gsPanelWidth = getAdjustedSizeFromContext(context, baseSize: 600, maxSize: 750);
-    final configPercentWidth = getAdjustedSizeFromContext(context, baseSize: .65, maxSize: .7, ratioMultiplier: 1.35);
-    final titlePadding = getAdjustedSizeFromContext(context, baseSize: 20, maxSize: 60, ratioMultiplier: 1.1);
-
+    final gsPanelWidth = getAdjustedSizeFromContext(
+      context,
+      baseSize: 600,
+      maxSize: 750,
+    );
+    final configPercentWidth = getAdjustedSizeFromContext(
+      context,
+      baseSize: .65,
+      maxSize: .7,
+      ratioMultiplier: 1.35,
+    );
+    final titlePadding = getAdjustedSizeFromContext(
+      context,
+      baseSize: 20,
+      maxSize: 60,
+      ratioMultiplier: 1.1,
+    );
 
     return Stack(
       children: [
@@ -41,7 +54,9 @@ class _PreFlightPageState extends State<PreFlightPage> {
             gripSize: 4,
             gripColor: theme.colorScheme.secondary,
             gripColorActive: theme.colorScheme.primary,
-            controller: SplitViewController(weights: [1 - configPercentWidth, configPercentWidth]),
+            controller: SplitViewController(
+              weights: [1 - configPercentWidth, configPercentWidth],
+            ),
             children: [
               // Logs panel now takes full left side
               SizedBox(
@@ -54,8 +69,15 @@ class _PreFlightPageState extends State<PreFlightPage> {
                     children: [
                       SizedBox(
                         height: 56,
-                        child: Align(alignment: Alignment.centerRight, child: Text('Device Logs', style: theme.textTheme.titleLarge,))),
-                      SizedBox(height: 12,),
+                        child: Align(
+                          alignment: Alignment.centerRight,
+                          child: Text(
+                            'Device Logs',
+                            style: theme.textTheme.titleLarge,
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 12),
                       Expanded(child: DeviceLogDemo()),
                     ],
                   ),
@@ -88,7 +110,10 @@ class _PreFlightPageState extends State<PreFlightPage> {
                     ),
                     const Spacer(),
                     Center(
-                      child: TitleText(theme: theme, title: 'Flight Simulation'),
+                      child: TitleText(
+                        theme: theme,
+                        title: 'Flight Simulation',
+                      ),
                     ),
                     const SimulationView(),
                   ],
@@ -98,6 +123,13 @@ class _PreFlightPageState extends State<PreFlightPage> {
           ),
         ),
 
+        if (_isGSDrawerOpen)
+          TapRegion(
+            onTapInside: (event) => _toggleDrawer(),
+            child: Container(
+              color: theme.colorScheme.surfaceContainerLowest.withAlpha(190),
+            ),
+          ),
         // Sliding Drawer
         AnimatedPositioned(
           duration: const Duration(milliseconds: 500),
@@ -109,10 +141,7 @@ class _PreFlightPageState extends State<PreFlightPage> {
           child: Material(
             elevation: 8,
             color: theme.colorScheme.surfaceContainer,
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: GroundStationConfig(),
-            ),
+            child: GroundStationConfig(),
           ),
         ),
         // Floating Button in Top Left
@@ -124,7 +153,11 @@ class _PreFlightPageState extends State<PreFlightPage> {
             onPressed: _toggleDrawer,
             tooltip: 'See all ground Stations',
 
-            icon: Icon(_isGSDrawerOpen ? Icons.keyboard_double_arrow_left_rounded : Icons.keyboard_double_arrow_right_rounded),
+            icon: Icon(
+              _isGSDrawerOpen
+                  ? Icons.keyboard_double_arrow_left_rounded
+                  : Icons.keyboard_double_arrow_right_rounded,
+            ),
           ),
         ),
       ],

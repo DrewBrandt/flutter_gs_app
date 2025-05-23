@@ -26,3 +26,14 @@ sealed class DeviceData with _$DeviceData {
     required int rssi,
   }) = _DeviceData;
 }
+
+DeviceData noDevice = DeviceData(
+  name: "Device",
+  id: -1,
+  batteryLevel: 0,
+  conStatus: ConStatus.noCon,
+  color: Colors.grey,
+  firmwareVer: "0.0.0",
+  type: DeviceType.unknown,
+  rssi: 0
+);

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 const List<Color> colorOptions = [
+  Colors.black,
   Colors.blue,
   Colors.deepOrange,
   Colors.green,
@@ -9,6 +10,7 @@ const List<Color> colorOptions = [
   Colors.cyan,
   Colors.amber,
   Colors.pink,
+  Colors.white,
 ];
 
 class ColorPickerButton extends StatelessWidget {
