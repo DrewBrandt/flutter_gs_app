@@ -24,7 +24,7 @@ class ConnIcon extends StatelessWidget {
         message = 'Available';
         icon = Icon(
           Icons.bluetooth_audio_rounded,
-          color: Theme.of(context).colorScheme.primaryFixed,
+          color: Theme.of(context).disabledColor,
         );
         break;
       case ConStatus.advert:

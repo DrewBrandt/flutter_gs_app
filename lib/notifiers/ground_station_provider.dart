@@ -68,7 +68,7 @@ final Map<FlightComputerModel, Relationship> knownFCs = {
           name: 'Charlie Tracker',
           color: colorOptions[2],
           firmwareVer: '0.0.1',
-          conStatus: ConStatus.conLoRa,
+          conStatus: ConStatus.advert,
         ),
         temperature: 41.2,
         hasGPSLock: false,
