@@ -22,8 +22,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           personal_token: ${{ secrets.GH_PAGES_DEPLOY_TOKEN }}
-          external_repository: DrewBrandt/DrewBrandt.github.io
-          publish_branch: main
+          publish_branch: gh-pages
           publish_dir: build/web
           user_name: DrewBrandt
           user_email: DrewBrandt@users.noreply.github.com
